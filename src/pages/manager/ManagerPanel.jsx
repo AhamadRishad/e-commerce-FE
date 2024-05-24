@@ -1,3 +1,4 @@
+
 //  import React from 'react'
 // import { Outlet } from 'react-router-dom'
 
@@ -52,7 +53,7 @@ import React from 'react'
 import { FaRegCircleUser } from 'react-icons/fa6'
 import { Link, Outlet } from 'react-router-dom'
 
-const AdminPanel = () => {
+const ManagerPanel = () => {
   return (
     <>  
     {/* <div > 
@@ -90,4 +91,4 @@ const AdminPanel = () => {
   )
 }
 
-export default AdminPanel
+export default ManagerPanel

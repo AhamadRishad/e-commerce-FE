@@ -8,11 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
-    <ToastContainer/>
+   
       <Header />
       <main className="min-h-[calc(100vh-100px)]"> 
         <Outlet />
       </main>
+      <ToastContainer autoClose='700' position='bottom-right'></ToastContainer>
       <Footer />
     </>
   );

@@ -17,11 +17,11 @@ const Header = () => {
          <Link to={"/"}> <Logo w={90} h={50} /> </Link>
         </div>
 
-        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow pl-2">
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full  pl-2">
           <input
             type="text"
             placeholder="search product here..."
-            className="w-ful outline-none "
+            className="w-ful outline-none  "
           ></input>
           <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
             <GrSearch />
@@ -47,7 +47,7 @@ const Header = () => {
             menuDisplay && (
               <div className="absolute bg-white bottom-0 top-11 h-fit p-2 shadow-lg rounded">
                <nav>
-                <Link to={"admin-panel"} className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded">admin panel</Link>
+                <Link to={"/admin-panel"} className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded">admin panel</Link>
                
                </nav>
               </div>
