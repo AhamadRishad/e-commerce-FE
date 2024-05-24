@@ -5,7 +5,7 @@ const MyUploads = () => {
     <> 
     <br /><br />
     <div>MyUploads</div> <br /><br />
-    <Link to='upload-cart'>upload cart</Link>
+    {/* <Link to='upload-cart'>up</Link> */}
     </>
   )
 }

@@ -11,12 +11,12 @@ import * as yup from "yup";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const Login = () => {
+const AdminLogin = () => {
   // var token=null;
   const navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/user/signin",data);
+      const res = await axios.post("http://localhost:3000/api/v1/admin/login",data);
       console.log(data);
       console.log(res.data);
   //     if (token) {
@@ -28,7 +28,7 @@ const Login = () => {
     //   res.Cookies.get(token);
     // console.log(token);
       toast.success('Login successfull');
-      navigate("/")
+      navigate("/admin/my-upload")
     } catch (error) {
       console.log(error);
     }
@@ -55,6 +55,7 @@ const Login = () => {
     <div className='mx-auto container p-4'>
 
       <div className='bg-white p-5 py-5 w-full max-w-sm mx-auto rounded'>
+        <h3 className='mx-auto ml-20 md:block '>Admin Login</h3>
         <div className='w-20 h-20 mx-auto'>
             <img src={loginIcon} alt='login icon'/>
         </div>
@@ -94,7 +95,7 @@ const Login = () => {
                   
                 </div>
                 {errors.password && <p  className="text-red-600 hover:underline hover:text-red-700  ">{errors.password.message}</p>}
-                <Link to={'/forgot-password'} className='block w-fit ml-auto hover:underline hover:text-red-600'>
+                <Link to={'/admin/forgot-password'} className='block w-fit ml-auto hover:underline hover:text-red-600'>
                     Forgot password ?
                 </Link>
             </div>
@@ -103,7 +104,7 @@ const Login = () => {
 
         </form>
 
-        <p className='my-5'>Don't have account ? <Link to={"/sign-up"} className='text-red-600 hover:underline hover:text-red-700'>sign up</Link></p>
+        <p className='my-5'>Don't have account ? <Link to={"/admin/sign-up"} className='text-red-600 hover:underline hover:text-red-700'>sign up</Link></p>
 
       </div>
 
@@ -112,6 +113,6 @@ const Login = () => {
   )
 }
 
-export default Login
+export default AdminLogin
 
 

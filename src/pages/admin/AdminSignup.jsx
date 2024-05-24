@@ -19,7 +19,7 @@ let userSchema = yup.object({
   mobile:yup.number().required().min(10),
 });
 
-const Signup = () => {
+const AdminSignup = () => {
     const {register, handleSubmit,  formState: { errors }} = useForm({resolver : yupResolver(userSchema)});
 
     const navigate = useNavigate()
@@ -28,10 +28,10 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-       const res = await axios.post("http://localhost:3000/api/v1/user/signup",data);
+       const res = await axios.post("http://localhost:3000/api/v1/admin/signup",data);
       console.log(res.data);
       toast.success('Login successfull');
-      navigate("/login")
+      navigate("/admin/login")
     } catch (error) {
       console.log(error);
     }
@@ -43,6 +43,7 @@ const Signup = () => {
   return (
     <section id="signup">
       <div className="mx-auto container p-4">
+      <h3 className='mx-auto ml-20 md:block '>Admin Login</h3>
         <div className="bg-white p-5 w-full max-w-sm mx-auto">
           <div className="w-20 h-20 mx-auto relative overflow-hidden rounded-full">
             <div>
@@ -145,7 +146,7 @@ const Signup = () => {
           <p className="my-5">
             Already have account ?{" "}
             <Link
-              to={"/login"}
+              to={"/admin/login"}
               className=" text-red-600 hover:text-red-700 hover:underline"
             >
               Login
@@ -157,4 +158,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default AdminSignup;

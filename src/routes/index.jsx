@@ -13,6 +13,10 @@ import Login from "../pages/user/Login.jsx";
 import AdminPanel from "../pages/admin/AdminPanel.jsx";
 // import MyUploads from "../pages/admin/MyUploads.jsx";
 import UploadCart from "../pages/admin/UploadCart.jsx";
+import MyUploads from "../pages/admin/MyUploads.jsx";
+import AdminSignup from "../pages/admin/AdminSignup.jsx";
+import AdminLogin from "../pages/admin/AdminLogin.jsx";
+import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
 
 const router= createBrowserRouter([
    {  
@@ -20,6 +24,8 @@ const router= createBrowserRouter([
     element:<App/>,
      children:[
         {
+            //set user navbar and fooer to home define path as '/'
+            // and remove '/' from app 
             path:"",
             element:<Home/>,
         },
@@ -35,44 +41,70 @@ const router= createBrowserRouter([
             path:"sign-up",
             element:<Signup/>
         },
-        {
-            path:"admin-panel",
-            element:<AdminPanel/>,
-            children:[
+        
+        // {
+        //     path:"admin-panel",
+        //     element:<AdminPanel/>,
+        //     children:[
 
-                {
-                    path:"upload-cart",
-                    element:<UploadCart/>,
-                },
+        //         {
+        //             path:"upload-cart",
+        //             element:<UploadCart/>,
+        //         },
              
-                // {
-                //     path:"all-admin-products",
-                //     element:<AdminAllProducts/>,
-                // },
-                {
-                    path:"manager-panel",
-                    element:<ManagerPanel/>,
-                    children:[
-                        {
+        //         // {
+        //         //     path:"all-admin-products",
+        //         //     element:<AdminAllProducts/>,
+        //         // },
+        //         {
+        //             path:"manager-panel",
+        //             element:<ManagerPanel/>,
+        //             children:[
+        //                 {
                             
-                        }
-                    ]
-                },
-            ]
-        },
+        //                 }
+        //             ]
+        //         },
+        //     ]
+        // },
        
     ]     
 },
-// {
-//     element:<ManagerPanel/>,
-//     children:[
-//         {
-//             path:"all-admins",
-//             element:<AllAdmin/>,
-//         },
-//     ]
+{
 
-// }
+    element:<AdminPanel/>,
+    children:[
+        {
+            path:"/admin/my-upload",
+            element:<MyUploads/>,
+        },
+        {
+            path:"/admin/upload-cart",
+            element:<UploadCart/>,
+        },
+        {
+            path:"/admin/sign-up",
+            element:<AdminSignup/>
+        },
+        {
+            path:"/admin/login",
+            element:<AdminLogin/>
+        },
+        {
+            path:"/admin/forgot-password",
+            element:<AdForgetPassword/>
+        }
+
+
+
+        
+    ]
+},
+{
+    // this is for manager
+}
+
+
 ])
 
 export default router;
