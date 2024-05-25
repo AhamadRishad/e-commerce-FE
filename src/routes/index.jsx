@@ -17,17 +17,27 @@ import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
 import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
 import AuthToken from "../protected-routes/AuthToken.jsx";
+import UserRoutes from "../protected-routes/UserRoutes.jsx";
 
 
 const router= createBrowserRouter([
-   
+  {
+    path:"login",
+    element:<Login/>
+  },
+  {
+    path:"sign-up",
+    element:<Signup/>
+},
    {  
-  
+   
     element:
     (
+        <UserRoutes> 
         <AuthToken>
             <App/> 
             </AuthToken>
+            </UserRoutes>
     ),
      children:[
         {
@@ -35,10 +45,7 @@ const router= createBrowserRouter([
             path:"/",
             element:<Home/>
         },
-        {
-            path:"login",
-            element:<Login/>
-        },
+     
         {
             path:"forgot-password",
             element:<ForgetPassword/>

@@ -3,7 +3,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { FaRegCircleUser } from 'react-icons/fa6'
 import { GrSearch } from 'react-icons/gr'
 import { Link } from 'react-router-dom'
-import Logo from "../../components/Logo.jsx";
+import DigitalMartLogo from "../../assets/DigitalMart.jpg"
 
 const AdminNavbar = () => {
     const [menuDisplay,setMenuDisplay]= useState(false)
@@ -12,7 +12,7 @@ const AdminNavbar = () => {
     <div className="h-full  mx-auto flex items-center justify-between px-4">
 
       <div>
-       <Link to={"/"}> <Logo w={90} h={50} /> </Link>
+       <Link to={"/"}>  <img className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30" src={DigitalMartLogo} alt="" /> </Link>
       </div>
 
       <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full  pl-2">

@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import loginIcon from '../../assets/signin.gif'
 import { FaEye, FaEyeSlash } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
@@ -16,10 +16,12 @@ const Login = () => {
   const navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/user/signin",data);
+      const res = await axios.post("http://localhost:3000/api/v1/user/signin",data, {Credentials: true});
+      
       console.log(data);
       console.log(res.data);
       // toast.success('Login successfull');
+      Cookies.set('token', res.data.token)
       navigate("/")
     } catch (error) {
       console.log(error);
