@@ -19,15 +19,7 @@ const Login = () => {
       const res = await axios.post("http://localhost:3000/api/v1/user/signin",data);
       console.log(data);
       console.log(res.data);
-  //     if (token) {
-  //       res.setHeader('Set-Cookie', `access_token=${token}; Secure; HttpOnly;`);
-  //  console.log({token})
-  //     } else {
-  //       console.log({token})
-  //     }
-    //   res.Cookies.get(token);
-    // console.log(token);
-      toast.success('Login successfull');
+      // toast.success('Login successfull');
       navigate("/")
     } catch (error) {
       console.log(error);

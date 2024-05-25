@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import loginIcon from '../../assets/signin.gif'
 import { FaEye, FaEyeSlash } from 'react-icons/fa6'
 import { Link, useNavigate } from 'react-router-dom'
@@ -27,7 +27,17 @@ const AdminLogin = () => {
   //     }
     //   res.Cookies.get(token);
     // console.log(token);
-      toast.success('Login successfull');
+    // const token = Cookies.get("token");
+    //     console.log(token);
+    //     if(token === undefined) {
+    //         navigate("/admin/signup",{replace:true})
+    //         toast.success('Login failed');
+    //     }else{
+    //       navigate("/admin/my-upload")
+    //       toast.success('Login successfull');
+    //     }
+    
+    toast.success('Login successfull');
       navigate("/admin/my-upload")
     } catch (error) {
       console.log(error);

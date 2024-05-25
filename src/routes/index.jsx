@@ -7,27 +7,33 @@ import ForgetPassword from "../pages/user/ForgetPassword.jsx";
 import Signup from "../pages/user/Signup.jsx";
 
 
-import ManagerPanel from "../pages/manager/ManagerPanel.jsx";
+// import ManagerPanel from "../pages/manager/ManagerPanel.jsx";
 
 import Login from "../pages/user/Login.jsx";
 import AdminPanel from "../pages/admin/AdminPanel.jsx";
-// import MyUploads from "../pages/admin/MyUploads.jsx";
 import UploadCart from "../pages/admin/UploadCart.jsx";
 import MyUploads from "../pages/admin/MyUploads.jsx";
 import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
 import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
+import AuthToken from "../protected-routes/AuthToken.jsx";
+
 
 const router= createBrowserRouter([
+   
    {  
-    path:"/",
-    element:<App/>,
+  
+    element:
+    (
+        <AuthToken>
+            <App/> 
+            </AuthToken>
+    ),
      children:[
         {
-            //set user navbar and fooer to home define path as '/'
-            // and remove '/' from app 
-            path:"",
-            element:<Home/>,
+         
+            path:"/",
+            element:<Home/>
         },
         {
             path:"login",
@@ -72,6 +78,7 @@ const router= createBrowserRouter([
 },
 {
 
+    
     element:<AdminPanel/>,
     children:[
         {
@@ -100,9 +107,9 @@ const router= createBrowserRouter([
         
     ]
 },
-{
-    // this is for manager
-}
+// {
+//     // this is for manager
+// }
 
 
 ])

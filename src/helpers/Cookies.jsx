@@ -1,11 +1,11 @@
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
-const Cookies = () => {
-    const token = Cookies.get("token");
-    console.log(token);
-  return (
-    <div>Cookies</div>
-  )
-}
+// const Cookies = () => {
+//     const token = Cookies.get("token");
+//     console.log(token);
+//   return (
+//     <div>Cookies</div>
+//   )
+// }
 
-export default Cookies
+// export default Cookies
