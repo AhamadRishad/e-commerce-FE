@@ -54,8 +54,47 @@ const router= createBrowserRouter([
             path:"sign-up",
             element:<Signup/>
         },
-        
+    ]     
+},
+{   
+    element:<AdminPanel/>,
+    children:[
+        {
+            path:"/admin/my-upload",
+            element:<MyUploads/>,
+        },
         // {
+        //     path:"/admin/upload-cart",
+        //     element:<UploadCart/>,
+        // },
+        {
+            path:"/admin/sign-up",
+            element:<AdminSignup/>
+        },
+        {
+            path:"/admin/login",
+            element:<AdminLogin/>
+        },
+        {
+            path:"/admin/forgot-password",
+            element:<AdForgetPassword/>
+        }    
+    ]
+},
+// {
+//     // this is for manager
+// }
+
+
+])
+
+export default router;
+
+
+
+
+
+ // {
         //     path:"admin-panel",
         //     element:<AdminPanel/>,
         //     children:[
@@ -80,45 +119,3 @@ const router= createBrowserRouter([
         //         },
         //     ]
         // },
-       
-    ]     
-},
-{
-
-    
-    element:<AdminPanel/>,
-    children:[
-        {
-            path:"/admin/my-upload",
-            element:<MyUploads/>,
-        },
-        {
-            path:"/admin/upload-cart",
-            element:<UploadCart/>,
-        },
-        {
-            path:"/admin/sign-up",
-            element:<AdminSignup/>
-        },
-        {
-            path:"/admin/login",
-            element:<AdminLogin/>
-        },
-        {
-            path:"/admin/forgot-password",
-            element:<AdForgetPassword/>
-        }
-
-
-
-        
-    ]
-},
-// {
-//     // this is for manager
-// }
-
-
-])
-
-export default router;

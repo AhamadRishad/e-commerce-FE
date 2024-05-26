@@ -20,9 +20,10 @@ const UserRoutes = ({ children }) => {
         console.log(data);
         
         if (data.success === false) {
-          navigate("sign-up", { replace: true });
+         return navigate("sign-up", { replace: true });
         }
-      } catch (error) {
+      } catch {
+        // (error)
         // console.error("Error occurred while checking user:", error);// if this error is trigger then url > http://localhost:5173/sign-up/sign-up 2 time signup fix this > thsi error trigger when u edit cookies from brouser // You can provide a way better UX than this when your app throws errors by providing your own ErrorBoundary or errorElement prop on your route.
         navigate("sign-up", { replace: true });
       }

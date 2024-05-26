@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
-   <Header />
+     <Header />
       <main className="min-h-[calc(100vh-100px)]"> 
         <Outlet />
       </main>
