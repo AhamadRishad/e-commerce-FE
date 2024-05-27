@@ -63,10 +63,10 @@ const router= createBrowserRouter([
             path:"/admin/my-upload",
             element:<MyUploads/>,
         },
-        // {
-        //     path:"/admin/upload-cart",
-        //     element:<UploadCart/>,
-        // },
+        {
+            path:"/admin/upload-cart",
+            element:<UploadCart/>,
+        },
         {
             path:"/admin/sign-up",
             element:<AdminSignup/>
