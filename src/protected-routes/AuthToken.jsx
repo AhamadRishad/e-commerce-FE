@@ -39,30 +39,32 @@
 
 //below this accepted
 
-import Cookies from "js-cookie";
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
-const AuthToken = ({ children }) => {
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = Cookies.get("token");
-        console.log(token);
+// import Cookies from "js-cookie";
+// import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react';
+
+// const AuthToken = ({ children }) => {
+//     const navigate = useNavigate();
+
+//     useEffect(() => {
+//         const token = Cookies.get("token");
+//         console.log(token);
       
         
-        if (token === undefined) {
-            navigate("/login", { replace: true });
-        }
-    }, [navigate]);
+//         if (token === undefined) {
+//             navigate("/login", { replace: true });
+//         }
+//     }, [navigate]);
 
-    // const token = Cookies.get("token");
-    // if (token === null) {
-    //     // return null; // Prevent rendering children while navigating
-    //     Navigate("/login",{replace:true})
-    // }
+//     // const token = Cookies.get("token");
+//     // if (token === null) {
+//     //     // return null; // Prevent rendering children while navigating
+//     //     Navigate("/login",{replace:true})
+//     // }
 
-    return children;
-}
+//     return children;
+// }
 
-export default AuthToken;
+// export default AuthToken;

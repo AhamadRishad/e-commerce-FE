@@ -17,6 +17,7 @@ const AdminLogin = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post("http://localhost:3000/api/v1/admin/login",data);
+      Cookies.set('token', res.data.token)
       console.log(data);
       console.log(res.data);
   //     if (token) {

@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import loginIcons from "../../assets/signin.gif";
 
-
+import Cookies from "js-cookie"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -30,6 +30,7 @@ const AdminSignup = () => {
     try {
        const res = await axios.post("http://localhost:3000/api/v1/admin/signup",data);
       console.log(res.data);
+      // Cookies.set('token', res.data.token)
       toast.success('Login successfull');
       navigate("/admin/login")
     } catch (error) {

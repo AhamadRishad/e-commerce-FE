@@ -16,8 +16,10 @@ import MyUploads from "../pages/admin/MyUploads.jsx";
 import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
 import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
-import AuthToken from "../protected-routes/AuthToken.jsx";
+// import AuthToken from "../protected-routes/AuthToken.jsx";
 import UserRoutes from "../protected-routes/UserRoutes.jsx";
+// import { AuthProvider } from "../pages/admin/protectedRoutes/AuthProvider.jsx";
+import ProtectedRoute from "../pages/admin/protectedRoutes/ProtectedRoute.jsx";
 
 
 const router= createBrowserRouter([
@@ -34,9 +36,7 @@ const router= createBrowserRouter([
     element:
     (
         <UserRoutes> 
-        <AuthToken>
             <App/> 
-            </AuthToken>
             </UserRoutes>
     ),
      children:[
@@ -50,14 +50,26 @@ const router= createBrowserRouter([
             path:"forgot-password",
             element:<ForgetPassword/>
         },
-        {
-            path:"sign-up",
-            element:<Signup/>
-        },
+        // {
+        //     path:"sign-up",
+        //     element:<Signup/>
+        // },
     ]     
 },
+{
+    path:"/admin/sign-up",
+    element:<AdminSignup/>
+},
+{
+    path:"/admin/login",
+    element: <AdminLogin/>
+},
 {   
-    element:<AdminPanel/>,
+    element:(
+        <ProtectedRoute> 
+        <AdminPanel/>
+        </ProtectedRoute>
+    ),
     children:[
         {
             path:"/admin/my-upload",
@@ -67,14 +79,7 @@ const router= createBrowserRouter([
             path:"/admin/upload-cart",
             element:<UploadCart/>,
         },
-        {
-            path:"/admin/sign-up",
-            element:<AdminSignup/>
-        },
-        {
-            path:"/admin/login",
-            element:<AdminLogin/>
-        },
+       
         {
             path:"/admin/forgot-password",
             element:<AdForgetPassword/>
