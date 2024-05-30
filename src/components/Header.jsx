@@ -16,7 +16,6 @@ const Header = () => {
         <div>
          <Link to={"/"}> <img className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30" src={DigitalMartLogo} alt="" />  </Link>
         </div>
-        {/* <Logo w={90} h={50} /> */}
         <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full  pl-2">
           <input
             type="text"

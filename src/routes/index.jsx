@@ -7,7 +7,6 @@ import ForgetPassword from "../pages/user/ForgetPassword.jsx";
 import Signup from "../pages/user/Signup.jsx";
 
 
-// import ManagerPanel from "../pages/manager/ManagerPanel.jsx";
 
 import Login from "../pages/user/Login.jsx";
 import AdminPanel from "../pages/admin/AdminPanel.jsx";
@@ -16,10 +15,9 @@ import MyUploads from "../pages/admin/MyUploads.jsx";
 import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
 import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
-// import AuthToken from "../protected-routes/AuthToken.jsx";
 import UserRoutes from "../protected-routes/UserRoutes.jsx";
-// import { AuthProvider } from "../pages/admin/protectedRoutes/AuthProvider.jsx";
 import ProtectedRoute from "../pages/admin/protectedRoutes/ProtectedRoute.jsx";
+import EditProducts from "../pages/admin/EditProducts.jsx";
 
 
 const router= createBrowserRouter([
@@ -79,7 +77,10 @@ const router= createBrowserRouter([
             path:"/admin/upload-cart",
             element:<UploadCart/>,
         },
-       
+       {
+        path:`/admin/edit-cart/:id`,
+        element:<EditProducts/>
+       },
         {
             path:"/admin/forgot-password",
             element:<AdForgetPassword/>

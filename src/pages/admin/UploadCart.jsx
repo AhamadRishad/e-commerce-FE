@@ -19,7 +19,7 @@ const schema = yup
     price: yup.string(),
     adminEmail: yup.string().required(),
     image: yup.mixed().required(),
-    description: yup.string().required(),
+    description: yup.string().required().max(99),
     category: yup.string().required(), 
   })
   .required();
@@ -84,7 +84,8 @@ const UploadCart = () => {
           },
         }
       );
-      console.log(res.data);
+      console.log("requestBody = ",requestBody);
+      console.log("res.data",res.data);
       //toast success
       navigate("/admin/my-upload");
     } catch (error) {

@@ -1,10 +1,9 @@
-
-
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { MdDelete } from 'react-icons/md';
+import { FaEdit } from 'react-icons/fa';
 
 const MyUploads = () => {
   const [products, setProducts] = useState([]);
@@ -45,7 +44,7 @@ const MyUploads = () => {
 
   return (
     <div className='py-3 px-4'>
-      <div className='bg-white py-2 px-4 flex justify-between items-center'>
+      <div className='bg-white py-2 px-4 flex justify-between items-center rounded-full'>
         <h2 className='font-bold text-lg'>All Products</h2>
         <Link to={'/admin/upload-cart'}>
           <button
@@ -56,9 +55,9 @@ const MyUploads = () => {
         </Link>
       </div>
 
-      <div className="p-4 max-h-screen lg:max-h-[calc(100vh-8rem)] overflow-auto">
+      <div className="p-4 max-h-screen lg:max-h-[calc(100vh-8rem)] overflow-auto ">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="min-w-full divide-y divide-gray-200 ">
             <thead className="bg-red-600">
               <tr>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
@@ -85,12 +84,17 @@ const MyUploads = () => {
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   Status
                 </th>
+                <th>
+                  <div  scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                    Action
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {products.map((product, index) => (
                 <tr key={product._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
                     {index + 1}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
@@ -105,18 +109,29 @@ const MyUploads = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
                     {product.category}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900">
                     {product.description}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-4 py-1 whitespace-nowrap text-sm text-gray-900 font-bold ">
+                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold"> */}
+
                     {product.image ? (
-                      <img src={product.image} alt={product.productName} className="h-10 w-10 rounded-full object-cover" />
+                      <img src={product.image} alt={product.productName} className="h-20 w-20 rounded object-contain" />
                     ) : (
                       'No image'
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
                     {product.status}
+                  </td>
+                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full">
+                    <div className='flex gap-2 items-center pt-4'>
+                      <MdDelete className='text-red-600 h-6 w-6 hover:text-red-700 cursor-pointer' />
+                  {/* <Link to={'/admin/edit-cart'}>   <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' /></Link>  */}
+                  <Link to={`/admin/edit-cart/${product._id}`} state={{ product }}>   
+                        <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' />
+                      </Link> 
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -129,6 +144,60 @@ const MyUploads = () => {
 }
 
 export default MyUploads;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
