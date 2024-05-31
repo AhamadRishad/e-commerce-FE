@@ -22,7 +22,7 @@ const EditProducts = () => {
   const location = useLocation();
   const { product } = location.state || {};
 
-//   const [allAdmins, setAllAdmins] = useState([]);
+  const [allAdmins, setAllAdmins] = useState([]);
   const [productCategory, setProductCategory] = useState([]);
 
   const {
@@ -35,14 +35,14 @@ const EditProducts = () => {
   });
 
   useEffect(() => {
-//     const fetchAdmins = async () => {
-//       try {
-//         const res = await axios.get("http://localhost:3000/api/v1/manager/get-admins");
-//         setAllAdmins(res.data);
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
+    const fetchAdmins = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/v1/manager/get-admins");
+        setAllAdmins(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     const fetchCategories = async () => {
       try {
@@ -53,7 +53,7 @@ const EditProducts = () => {
       }
     };
 
-    // fetchAdmins();
+    fetchAdmins();
     fetchCategories();
   }, []);
 
@@ -62,7 +62,7 @@ const EditProducts = () => {
       setValue("productName", product.productName);
       setValue("brandName", product.brandName);
       setValue("price", product.price);
-    //   setValue("adminEmail", product.adminEmail);
+      setValue("adminEmail", product.adminEmail);
       setValue("category", product.category);
       setValue("description", product.description);
     }
@@ -86,7 +86,7 @@ const EditProducts = () => {
         requestBody,
         {
           withCredentials: true,
-          headers: { "Content-Type": "multipart/form-data" },
+          // headers: { "Content-Type": "multipart/form-data" }, have to add mutipartform data later 
         }
       );
       navigate("/admin/my-upload");
@@ -136,7 +136,7 @@ const EditProducts = () => {
 
 
 
-{/* 
+ 
 
             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
               <div className="flex-1 w-full lg:w-1/2">
@@ -184,7 +184,7 @@ const EditProducts = () => {
                   {errors.image && <p className="text-red-600">{errors.image.message}</p>}
                 </div>
               </div>
-            </label> */}
+            </label> 
 
 
 

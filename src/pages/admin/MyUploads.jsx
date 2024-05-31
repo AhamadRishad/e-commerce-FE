@@ -10,6 +10,10 @@ const MyUploads = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // 
+
+        
+
   useEffect(() => {
     const token = Cookies.get('token');
 
@@ -126,9 +130,9 @@ const MyUploads = () => {
                   </td>
                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full">
                     <div className='flex gap-2 items-center pt-4'>
-                      <MdDelete className='text-red-600 h-6 w-6 hover:text-red-700 cursor-pointer' />
+                <Link to={`/admin/delete-product/${product._id}`} state={{product}} >  <MdDelete  className='text-red-600 h-6 w-6 hover:text-red-700 cursor-pointer' /> </Link> 
                   {/* <Link to={'/admin/edit-cart'}>   <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' /></Link>  */}
-                  <Link to={`/admin/edit-cart/${product._id}`} state={{ product }}>   
+                  <Link to={`/admin/edit-cart/${product._id}`} state={{ product}}>   
                         <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' />
                       </Link> 
                     </div>

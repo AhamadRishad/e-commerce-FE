@@ -18,6 +18,7 @@ import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
 import UserRoutes from "../protected-routes/UserRoutes.jsx";
 import ProtectedRoute from "../pages/admin/protectedRoutes/ProtectedRoute.jsx";
 import EditProducts from "../pages/admin/EditProducts.jsx";
+import DeleteProducts from "../pages/admin/DeleteProducts.jsx";
 
 
 const router= createBrowserRouter([
@@ -80,6 +81,10 @@ const router= createBrowserRouter([
        {
         path:`/admin/edit-cart/:id`,
         element:<EditProducts/>
+       },
+       {
+        path:`/admin/delete-product/:id`,
+        element:<DeleteProducts/>
        },
         {
             path:"/admin/forgot-password",
