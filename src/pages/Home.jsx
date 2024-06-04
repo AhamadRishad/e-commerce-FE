@@ -1,4 +1,7 @@
 import React from 'react'
+import CategoryList from './user/CategoryList'
+import BannerProduct from '../components/BannerProduct'
+import HorizontalCardProducts from '../components/HorizontalCardProducts'
 
 
 
@@ -7,7 +10,13 @@ const Home = () => {
   return (
     <>
 
-<h1>home</h1>
+<CategoryList/>
+<BannerProduct/>
+
+
+<HorizontalCardProducts category={"airpodes"} heading={"Top's Airpods"}/>
+<HorizontalCardProducts category={"mouse"} heading={"popular's watchs"}/>
+
     </>
   )
 }

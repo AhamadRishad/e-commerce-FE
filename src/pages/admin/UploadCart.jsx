@@ -16,7 +16,8 @@ const schema = yup
   .object({
     productName: yup.string().required(),
     brandName: yup.string().required(),
-    price: yup.string(),
+    price:yup.number(),
+    sellingPrice:yup.number(),
     adminEmail: yup.string().required(),
     image: yup.mixed().required(),
     description: yup.string().required().max(99),
@@ -67,11 +68,14 @@ const UploadCart = () => {
       productName: data.productName,
       brandName: data.brandName,
       price: data.price,
+      sellingPrice:data.sellingPrice,
       category: data.category,
       adminEmail: data.adminEmail,
       description: data.description,
       image: data.image[0],
+      
     };
+    console.log(requestBody)
 
     try {
       const res = await axios.post(
@@ -125,13 +129,39 @@ const UploadCart = () => {
               className="p-2 bg-slate-100 border rounded"
             />
             {errors.brandName && <p className="text-red-600">{errors.brandName.message}</p>}
+
+
+            <div className="flex flex-col lg:flex-row justify-between gap-4 w-full"> 
+
+            <div className="flex-1">
+            <input
+              {...register("sellingPrice")}
+              type="text"
+              placeholder="selling Price"
+              className="p-2 bg-slate-100 border rounded w-full"
+            />
+            {errors.sellingPrice && <p className="text-red-600">{errors.sellingPrice.message}</p>}
+            </div>
+
+
+
+            <div className="flex-1 ">
+
             <input
               {...register("price")}
               type="text"
               placeholder="Price"
-              className="p-2 bg-slate-100 border rounded"
+              className="p-2 bg-slate-100 border rounded w-full"
             />
             {errors.price && <p className="text-red-600">{errors.price.message}</p>}
+            </div>
+
+
+           
+
+
+            </div>
+
             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
               <div className="flex-1 w-full lg:w-1/2">
                 <select

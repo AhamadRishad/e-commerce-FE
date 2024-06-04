@@ -18,6 +18,9 @@ const DeleteProducts = () => {
         `http://localhost:3000/api/v1/admin/delete-product/${id}`,
          {
            withCredentials: true
+          //  headers: {
+          //   'Content-Type': 'application/json', 
+          // },
          });
       console.log("Response:", res);
       console.log("Response data:", res.data);

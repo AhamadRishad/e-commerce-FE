@@ -15,10 +15,11 @@ import MyUploads from "../pages/admin/MyUploads.jsx";
 import AdminSignup from "../pages/admin/AdminSignup.jsx";
 import AdminLogin from "../pages/admin/AdminLogin.jsx";
 import AdForgetPassword from "../pages/admin/AdForgetPassword.jsx";
-import UserRoutes from "../protected-routes/UserRoutes.jsx";
+import UserRoutes from "../pages/user/protected-routes/UserRoutes.jsx";
 import ProtectedRoute from "../pages/admin/protectedRoutes/ProtectedRoute.jsx";
 import EditProducts from "../pages/admin/EditProducts.jsx";
 import DeleteProducts from "../pages/admin/DeleteProducts.jsx";
+import CategoryProduct from "../pages/user/CategoryProduct.jsx";
 
 
 const router= createBrowserRouter([
@@ -43,6 +44,10 @@ const router= createBrowserRouter([
          
             path:"/",
             element:<Home/>
+        },
+        {
+            path:"product-category/:categoryName",
+            element:<CategoryProduct/>
         },
      
         {

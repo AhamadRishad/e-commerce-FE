@@ -18,7 +18,7 @@ const AdminPanel = () => {
         </div>
         <Outlet/>
         <ToastContainer autoClose='700' position='bottom-right'></ToastContainer>
-        
+        {/* neeed footer */}
     </div>
   )
 }

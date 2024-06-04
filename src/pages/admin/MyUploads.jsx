@@ -5,6 +5,13 @@ import axios from 'axios';
 import { MdDelete } from 'react-icons/md';
 import { FaEdit } from 'react-icons/fa';
 
+const truncateText = (text, maxLength) => {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  return text;
+};
+
 const MyUploads = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -113,14 +120,15 @@ const MyUploads = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
                     {product.category}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900">
-                    {product.description}
+                  <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900  ">
+                    {/* {product.description} */}
+                    {truncateText(product.description, 25)}
                   </td>
                   <td className="px-4 py-1 whitespace-nowrap text-sm text-gray-900 font-bold ">
                   {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold"> */}
 
                     {product.image ? (
-                      <img src={product.image} alt={product.productName} className="h-20 w-20 rounded object-contain" />
+                      <img src={product.image} alt={product.productName} className="h-10 w-10 rounded-full object-cover" />
                     ) : (
                       'No image'
                     )}
@@ -129,7 +137,7 @@ const MyUploads = () => {
                     {product.status}
                   </td>
                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full">
-                    <div className='flex gap-2 items-center pt-4'>
+                    <div className='flex gap-2 items-center pt-'>
                 <Link to={`/admin/delete-product/${product._id}`} state={{product}} >  <MdDelete  className='text-red-600 h-6 w-6 hover:text-red-700 cursor-pointer' /> </Link> 
                   {/* <Link to={'/admin/edit-cart'}>   <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' /></Link>  */}
                   <Link to={`/admin/edit-cart/${product._id}`} state={{ product}}>   

@@ -9,7 +9,8 @@ import { IoClose, IoCloudUploadSharp } from "react-icons/io5";
 const schema = yup.object().shape({
   productName: yup.string().required("Product Name is required"),
   brandName: yup.string().required("Brand Name is required"),
-  price: yup.string().required("Price is required"),
+  price: yup.number().required("Price is required"),
+  sellingPrice:yup.number().required(),
 //   adminEmail: yup.string().required("Admin Email is required"),
 //   image: yup.mixed(),
   description: yup.string().required("Description is required").max(99),
@@ -65,6 +66,8 @@ const EditProducts = () => {
       setValue("adminEmail", product.adminEmail);
       setValue("category", product.category);
       setValue("description", product.description);
+      setValue("sellingPrice", product.sellingPrice);
+      
     }
   }, [product, setValue]);
 
@@ -73,6 +76,7 @@ const EditProducts = () => {
       productName: data.productName,
       brandName: data.brandName,
       price: data.price,
+      sellingPrice:data.sellingPrice,
       category: data.category,
       adminEmail: data.adminEmail,
       description: data.description,
@@ -126,14 +130,27 @@ const EditProducts = () => {
               className="p-2 bg-slate-100 border rounded"
             />
             {errors.brandName && <p className="text-red-600">{errors.brandName.message}</p>}
+            <div className="flex flex-col lg:flex-row justify-between gap-4 w-full"> 
+            <div className="flex-1"> 
+            <input
+              {...register("sellingPrice")}
+              type="text"
+              placeholder="selling price"
+              className="p-2 bg-slate-100 border rounded w-full"
+            />
+            {errors.sellingPrice && <p className="text-red-600">{errors.sellingPrice.message}</p>}
+            </div>
+
+            <div className="flex-1"> 
             <input
               {...register("price")}
               type="text"
               placeholder="Price"
-              className="p-2 bg-slate-100 border rounded"
+              className="p-2 bg-slate-100 border rounded w-full"
             />
             {errors.price && <p className="text-red-600">{errors.price.message}</p>}
-
+            </div>
+            </div>
 
 
  
@@ -196,8 +213,13 @@ const EditProducts = () => {
             {errors.description && <p className="text-red-600">{errors.description.message}</p>}
             <input
               type="submit"
-              className="bg-red-600 text-white mb-10 px-3 py-2 rounded hover:bg-red-700"
+              className="bg-red-600 text-white  px-3 py-2 rounded hover:bg-red-700"
             />
+             <button
+             onClick={()=>navigate('/admin/my-upload')}
+              className="bg-slate-200 text-black mb-10 px-3 py-2 rounded hover:bg-slate-700"
+             
+            >Cancel</button>
           </form>
         </div>
       </div>

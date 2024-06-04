@@ -13,7 +13,7 @@ const UserRoutes = ({ children }) => {
     const token = Cookies.get("token");
     if (!token) {
       console.log("hitted to !token")
-      navigate("/sign-up", { replace: true });
+      navigate("/login", { replace: true });
       return;
     }
 
@@ -26,11 +26,11 @@ const UserRoutes = ({ children }) => {
         const data = res.data;
 
         if (!data.success) {
-          navigate("/sign-up", { replace: true });
+          navigate("/login", { replace: true });
         }
       } catch (error) {
         console.error("Error occurred while checking user:", error);
-        navigate("/sign-up", { replace: true });
+        navigate("/login", { replace: true });
       }
     };
 
