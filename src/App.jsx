@@ -9,7 +9,7 @@ function App() {
   return (
     <>
      <Header />
-      <main className="min-h-[calc(100vh-100px)]"> 
+      <main className="min-h-[calc(100vh-100px)] pt-16"> 
         <Outlet />
       </main>
       <ToastContainer autoClose='700' position='bottom-right'></ToastContainer>
