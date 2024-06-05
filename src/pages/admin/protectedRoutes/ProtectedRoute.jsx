@@ -10,8 +10,8 @@ const ProtectedRoute = ({children}) => {
   const navigate = useNavigate();
 
   useEffect(()=> {
-    const token = Cookies.get("token")
-    if(!token){
+    const AdminToken = Cookies.get("AdminToken")
+    if(!AdminToken){
       navigate("/admin/login",{replace:true})
       return;
     }

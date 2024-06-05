@@ -20,7 +20,7 @@ const schema = yup
     sellingPrice:yup.number(),
     adminEmail: yup.string().required(),
     image: yup.mixed().required(),
-    description: yup.string().required().max(99),
+    description: yup.string().required(),
     category: yup.string().required(), 
   })
   .required();

@@ -22,13 +22,13 @@ const MyUploads = () => {
         
 
   useEffect(() => {
-    const token = Cookies.get('token');
+    const AdminToken = Cookies.get('AdminToken');
 
     const fetchProducts = async () => {
       try {
         const response = await axios.post('http://localhost:3000/api/v1/admin/adminProduct', {}, {
           headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${AdminToken}`
           },
           withCredentials: true // Ensure cookies are sent with the request
         });

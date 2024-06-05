@@ -46,7 +46,7 @@ const Header = () => {
             menuDisplay && (
               <div className="absolute bg-white bottom-0 top-11 h-fit p-2 shadow-lg rounded">
                <nav>
-                <Link to={"/admin/login"} className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded">Admin panel</Link>
+                <Link to={"/admin/my-upload"} className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded">Admin panel</Link>
                
                </nav>
               </div>

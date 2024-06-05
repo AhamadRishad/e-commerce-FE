@@ -81,12 +81,11 @@ const HorizontalCardProducts = ({ category, heading }) => {
                 </h2>
                 <p className="capitalize text-slate-500">{product?.category}</p>
                 <div className="flex gap-3">
-                  {/* <p>{product.sellingPrice}</p> its not created on backend and upload section create it later */}
                   <p className="text-red-600 font-medium">
                     {displayINRCurrency(product?.price)}
                   </p>
                   <p className="text-slate-500 line-through">
-                    {displayINRCurrency(5000)}
+                    {displayINRCurrency(product?.sellingPrice)}
                   </p>
                 </div>
                 <button className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full">

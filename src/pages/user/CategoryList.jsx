@@ -59,7 +59,7 @@ const CategoryList = () => {
                   >
                     <img
                       src={product?.image}
-                      alt={product?.productName}
+                      alt={product?.category}
                       className="h-full object-scale-down mix-blend-multiply hover:scale-125 transition-all"
                     />
                   </div>

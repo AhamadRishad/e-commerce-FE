@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import {  useState } from 'react'
 import Cookies from "js-cookie";
 import loginIcon from '../../assets/signin.gif'
 import { FaEye, FaEyeSlash } from 'react-icons/fa6'
@@ -14,10 +14,21 @@ import { toast } from 'react-toastify';
 const AdminLogin = () => {
   // var token=null;
   const navigate = useNavigate()
+
+  // useEffect(()=>{
+  //   const AdminToken = Cookies.get("AdminToken")
+  //   if(AdminToken){
+  //       navigate("/admin/my-upload")
+  //     return;
+          
+  //   }
+    
+      
+  // },[])
   const onSubmit = async (data) => {
     try {
       const res = await axios.post("http://localhost:3000/api/v1/admin/login",data);
-      Cookies.set('token', res.data.token)
+      Cookies.set('AdminToken', res.data.AdminToken)
       console.log(data);
       console.log(res.data);
   //     if (token) {

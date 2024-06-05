@@ -13,7 +13,7 @@ const schema = yup.object().shape({
   sellingPrice:yup.number().required(),
 //   adminEmail: yup.string().required("Admin Email is required"),
 //   image: yup.mixed(),
-  description: yup.string().required("Description is required").max(99),
+  description: yup.string().required("Description is required"),
   category: yup.string().required("Category is required"),
 });
 
