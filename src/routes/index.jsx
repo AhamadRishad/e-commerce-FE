@@ -20,6 +20,7 @@ import ProtectedRoute from "../pages/admin/protectedRoutes/ProtectedRoute.jsx";
 import EditProducts from "../pages/admin/EditProducts.jsx";
 import DeleteProducts from "../pages/admin/DeleteProducts.jsx";
 import CategoryProduct from "../pages/user/CategoryProduct.jsx";
+import CardProductDetails from "../pages/user/CardProductDetails.jsx";
 
 
 const router= createBrowserRouter([
@@ -48,6 +49,10 @@ const router= createBrowserRouter([
         {
             path:"product-category/:categoryName",
             element:<CategoryProduct/>
+        },
+        {
+            path:"card-product-detail/:id",
+            element:<CardProductDetails/>
         },
      
         {

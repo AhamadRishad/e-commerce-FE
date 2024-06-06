@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import displayINRCurrency from "../helpers/displayCurrency";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import addToCart from "../helpers/addToCart";
 
 const HorizontalCardProducts = ({ category, heading }) => {
   const [data, setData] = useState([]);
@@ -66,9 +68,10 @@ const HorizontalCardProducts = ({ category, heading }) => {
         </button>
         { 
          loading ? (
-          loadingList.map((product, index) => {
+          loadingList.map((_, index) => {
             return (
-              <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
+              <div key={index}
+              className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
                 <div className=" bg-slate-200 h-full p-4 min-w-[120px] md:min-w-[145px] animate-pulse rounded">
                   
                 </div>
@@ -85,7 +88,7 @@ const HorizontalCardProducts = ({ category, heading }) => {
                       
                     </p>
                   </div>
-                  <button className="text-sm text-white px-3 py-0.5 rounded-full w-full bg-slate-200 animate-pulse rounded-full">
+                  <button className="text-sm text-white px-3 py-0.5 rounded-full w-full bg-slate-200 animate-pulse ">
                    
                   </button>
                 </div>
@@ -93,9 +96,9 @@ const HorizontalCardProducts = ({ category, heading }) => {
             );
           })
         ):(
-          data.map((product, index) => {
+          data.map((product) => {
             return (
-              <div className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
+              <Link   to={'card-product-detail/'+product._id} key={product._id} className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
                 <div className=" bg-slate-200 h-full p-4 min-w-[120px] md:min-w-[145px] ">
                   <img
                     src={product?.image}
@@ -116,11 +119,13 @@ const HorizontalCardProducts = ({ category, heading }) => {
                       {displayINRCurrency(product?.sellingPrice)}
                     </p>
                   </div>
-                  <button className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full">
+                  <button className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
+                    onClick={(e)=>addToCart(e,product._id)}
+                  >
                     Add to cart
                   </button>
                 </div>
-              </div>
+              </Link>
             );
           })
         )
