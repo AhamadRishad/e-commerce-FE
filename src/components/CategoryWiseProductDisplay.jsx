@@ -1,3 +1,5 @@
+
+
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import displayINRCurrency from "../helpers/displayCurrency";
@@ -5,22 +7,13 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import addToCart from "../helpers/addToCart";
 
-const VerticalCardProducts = ({ category, heading }) => {
+const CategoryWiseProductDisplay = ({ category, heading }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const loadingList = new Array(13).fill(null);
 
-  const [scroll, setScroll] = useState(0);
-  const scrollElement = useRef();
 
-  const scrollRight = () => {
-    scrollElement.current.scrollLeft += 300;
-  };
-
-  const scrollLeft = () => {
-    scrollElement.current.scrollLeft -= 300;
-  };
 
   const fetchCategoryWiseProducts = async () => {
     setLoading(true);
@@ -62,20 +55,10 @@ const VerticalCardProducts = ({ category, heading }) => {
      
 
       <div
-        className="flex items-center gap-4 md:gap-6 overflow-x-scroll scrollbar-none transition-all"
-        ref={scrollElement}
+        className=" lg:grid lg:grid-cols-[repeat(auto-fit,minmax(300px,320px))] flex gap-3 grid-cols-[repeat(auto-fit,minmax(200px,220px))] justify-between  md:gap-6 overflow-x-scroll scrollbar-none transition-all"
+        
       >
-        <button className="bg-white shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block"
-            onClick={scrollLeft}
-        >
-          <FaAngleLeft />
-        </button>
-        <button
-          className="bg-white shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block"
-          onClick={scrollRight}
-        >
-          <FaAngleRight />
-        </button>
+      
         {
 
         loading?(
@@ -148,4 +131,4 @@ const VerticalCardProducts = ({ category, heading }) => {
   );
 };
 
-export default VerticalCardProducts;
+export default CategoryWiseProductDisplay;

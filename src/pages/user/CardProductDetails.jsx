@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaStar, FaStarHalf } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import displayINRCurrency from "../../helpers/displayCurrency";
+import CategoryWiseProductDisplay from "../../components/CategoryWiseProductDisplay";
 
 const CardProductDetails = () => {
   const [data, setData] = useState({
@@ -155,6 +156,12 @@ const CardProductDetails = () => {
         }
 
       </div>
+
+      {
+        data.category && (
+          <CategoryWiseProductDisplay category={data.category} heading={"Recommended Product"}/> 
+        )
+      }
     </div>
   );
 };
