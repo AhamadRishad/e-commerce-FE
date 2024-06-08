@@ -20,7 +20,7 @@ const Login = () => {
       
       console.log(data);
       console.log(res.data);
-      // toast.success('Login successfull');
+      toast.success('Login successfull');
       Cookies.set('token', res.data.token)
       navigate("/")
     } catch (error) {

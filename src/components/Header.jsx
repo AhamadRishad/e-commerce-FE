@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GrSearch } from "react-icons/gr";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DigitalMartLogo from "../assets/DigitalMart.jpg"
+import useCartStore from "../stateManagement/cartStore";
+import Cookies from 'js-cookie'
+
 
 const Header = () => {
+  const navigate = useNavigate()
   const [menuDisplay,setMenuDisplay]= useState(false)
+ 
+  const { totalProducts, fetchCartCount } = useCartStore();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if(token){
+      setIsLoggedIn(true);
+    }
+    fetchCartCount();
+  }, [fetchCartCount]);
+
+ const handleLogout = ()=>{
+  // create an api to remove token
+   Cookies.remove('token');
+   setIsLoggedIn(false);
+   navigate("/login",{replace:true})
+ }
 
 
   return (
@@ -60,13 +82,29 @@ const Header = () => {
               <FaShoppingCart />
             </span>
             <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3">
-              <p className="text-sm">0</p>
+              <p className="text-sm">{totalProducts}</p>
             </div>
           </div>
 
-          <div>
+          {/* <div>
             <Link to={"/login"} className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700">Login</Link>
-          </div>
+          </div> */}
+
+            {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to={"/login"}
+              className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700"
+            >
+              Login
+            </Link>
+          )}
 
         </div>
       </div>

@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import displayINRCurrency from "../helpers/displayCurrency";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import addToCart from "../helpers/addToCart";
+// import addToCart from "../helpers/addToCart";
+import AddToCartButton from "../helpers/AddToCartButton";
 
 const VerticalCardProducts = ({ category, heading }) => {
   const [data, setData] = useState([]);
@@ -130,11 +131,12 @@ const VerticalCardProducts = ({ category, heading }) => {
                     {displayINRCurrency(product?.sellingPrice)}
                   </p>
                 </div>
-                <button className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
+                {/* <button className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
                  onClick={(e)=>addToCart(e,product._id)}
                 >
                   Add to cart
-                </button>
+                </button> */}
+                  <AddToCartButton productId={product._id} />
               </div>
             </Link>
           );
