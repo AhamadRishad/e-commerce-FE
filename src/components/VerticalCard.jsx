@@ -1,65 +1,14 @@
+import React from 'react'
+import AddToCartButton from '../helpers/AddToCartButton';
+import displayINRCurrency from '../helpers/displayCurrency';
+import { Link } from 'react-router-dom';
+import scrollTop from '../helpers/scrollTop';
 
-
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
-import displayINRCurrency from "../helpers/displayCurrency";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-// import addToCart from "../helpers/addToCart";
-import AddToCartButton from "../helpers/AddToCartButton";
-import scrollTop from "../helpers/scrollTop";
-
-const CategoryWiseProductDisplay = ({ category, heading }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const loadingList = new Array(13).fill(null);
-
-
-
-  const fetchCategoryWiseProducts = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.post(
-        "http://localhost:3000/api/v1/user/category-wise-products",
-        {
-          category,
-        },
-        {
-          withCredentials: true,
-        }
-      );
-      const dataResponse = res.data;
-
-      setData(dataResponse.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching category products:", error);
-    }
-  
-  };
-
-  useEffect(() => {
-    fetchCategoryWiseProducts();
-  }, []);
-
+const VerticalCard = ({loading,data = []}) => {
+    const loadingList = new Array(13).fill(null);
   return (
-    <div className="container mx-auto px-4 my-6 relative">
-        {
-            loading?(
-                <div className="container mx-auto px-4 my-6 relative "> 
-                <h2 className="text-2xl font-semibold p-4 animate-pulse rounded-full bg-slate-200 block"></h2>
-                </div>
-            ):(
-                <h2 className="text-2xl font-semibold py-4">{heading}</h2>
-            )
-        }
-     
-
-      <div
-        className=" lg:grid lg:grid-cols-[repeat(auto-fit,minmax(300px,320px))]
-         flex gap-3 grid-cols-[repeat(auto-fit,minmax(200px,220px))] justify-between
-           md:gap-6 overflow-x-scroll scrollbar-none transition-all"        
+    <div
+        className=" grid grid-cols-[repeat(auto-fit,minmax(260px,300px))] justify-center md:justify-between md:gap-4 overflow-x-scroll scrollbar-none transition-all"        
       >    
         {
         loading?(
@@ -93,7 +42,7 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
         ):(
               data.map((product) => {
           return (
-            <Link to={'/card-product-detail/'+product._id}  key={product._id} className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow " onClick={scrollTop}>
+            <Link to={'/card-product-detail/'+product._id}  key={product._id} className="w-full min-w-[280px]  md:min-w-[300px] max-w-[280px] md:max-w-[300px]  bg-white rounded-sm shadow " onClick={scrollTop}>
               <div className=" bg-slate-200 h-48 p-4 min-w-[280px] md:min-w-[145px] flex justify-center items-center">
                 <img
                   src={product?.image}
@@ -129,8 +78,7 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
     
     }
       </div>
-    </div>
-  );
-};
+  )
+}
 
-export default CategoryWiseProductDisplay;
+export default VerticalCard

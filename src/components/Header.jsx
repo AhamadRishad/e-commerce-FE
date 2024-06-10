@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GrSearch } from "react-icons/gr";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import DigitalMartLogo from "../assets/DigitalMart.jpg"
 import useCartStore from "../stateManagement/cartStore";
 import Cookies from 'js-cookie'
@@ -15,11 +15,19 @@ const Header = () => {
   const { totalProducts, fetchCartCount } = useCartStore();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const searchInput = useLocation()
+  const [search , setSearch] = useState(searchInput?.search?.split("=")[1])
+
+  
+
+  // console.log('searchInput :',searchInput?.search.split('=')[1])
+
   useEffect(() => {
     const token = Cookies.get('token');
     if(token){
       setIsLoggedIn(true);
     }
+   
     fetchCartCount();
   }, [fetchCartCount]);
 
@@ -30,7 +38,16 @@ const Header = () => {
    navigate("/login",{replace:true})
  }
 
-
+    
+     const handleSearch = (e) => {
+      const { value } = e.target
+      setSearch(value)
+      if(value){
+        navigate(`/search?q=${value}`)
+      }else{
+        navigate("/search")
+      }
+     }
   return (
     <header className="h-16 shadow-md bg-white fixed w-full z-40">
       <div className="h-full  mx-auto flex items-center justify-between px-4">
@@ -43,6 +60,8 @@ const Header = () => {
             type="text"
             placeholder="search product here..."
             className="w-ful outline-none  "
+            onChange={handleSearch}
+            value={search}
           ></input>
           <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
             <GrSearch />
@@ -93,6 +112,7 @@ const Header = () => {
             {isLoggedIn ? (
             <button
               onClick={handleLogout}
+             
               className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700"
             >
               Logout

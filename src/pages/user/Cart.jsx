@@ -163,7 +163,7 @@ const Cart = () => {
           }
         </div>
         {/***Total product */}
-      <div className='mt-5 lg:mt-0 w-full max-w-sm'>
+      <div className='mt- py-3 lg:mt-0 w-full max-w-sm'>
            {
               loading ? (
                   <div className='h-36 bg-slate-200 border rounded border-slate-300 animate-pulse'>
@@ -173,7 +173,7 @@ const Cart = () => {
                   <div className='h-36 bg-white '>
                   <h2 className=' text-white bg-red-600 px-4 py-1'>Summary</h2>
 
-                    <div className='flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600'>
+                    <div className='flex items-center justify-between px-4 gap-2 mt-2 font-medium text-lg text-slate-600'>
                      <p>Quantity</p>
                      <p>{totalQty}</p>
                     </div>

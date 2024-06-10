@@ -22,6 +22,7 @@ import DeleteProducts from "../pages/admin/DeleteProducts.jsx";
 import CategoryProduct from "../pages/user/CategoryProduct.jsx";
 import CardProductDetails from "../pages/user/CardProductDetails.jsx";
 import Cart from "../pages/user/Cart.jsx";
+import SearchProduct from "../pages/user/SearchProduct.jsx";
 
 
 const router= createBrowserRouter([
@@ -58,6 +59,10 @@ const router= createBrowserRouter([
         {
             path:"cart",
             element:<Cart/>
+        },
+        {
+            path:"search",
+            element:<SearchProduct/>
         },
      
         {

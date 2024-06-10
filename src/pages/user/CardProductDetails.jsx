@@ -45,7 +45,7 @@ const CardProductDetails = () => {
 
   useEffect(() => {
     fetchCardProductDetail();
-  }, []);
+  }, [params]);
 
   return (
     <div className="container mx-auto p-4">
