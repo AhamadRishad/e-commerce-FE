@@ -21,6 +21,7 @@ import EditProducts from "../pages/admin/EditProducts.jsx";
 import DeleteProducts from "../pages/admin/DeleteProducts.jsx";
 import CategoryProduct from "../pages/user/CategoryProduct.jsx";
 import CardProductDetails from "../pages/user/CardProductDetails.jsx";
+import Cart from "../pages/user/Cart.jsx";
 
 
 const router= createBrowserRouter([
@@ -53,6 +54,10 @@ const router= createBrowserRouter([
         {
             path:"card-product-detail/:id",
             element:<CardProductDetails/>
+        },
+        {
+            path:"cart",
+            element:<Cart/>
         },
      
         {
