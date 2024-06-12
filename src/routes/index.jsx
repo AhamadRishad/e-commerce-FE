@@ -49,7 +49,7 @@ const router= createBrowserRouter([
             element:<Home/>
         },
         {
-            path:"product-category/:categoryName",
+            path:"product-category",
             element:<CategoryProduct/>
         },
         {

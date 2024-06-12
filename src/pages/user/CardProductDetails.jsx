@@ -4,6 +4,9 @@ import { FaStar, FaStarHalf } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import CategoryWiseProductDisplay from "../../components/CategoryWiseProductDisplay";
+import AddToCartButton from "../../helpers/AddToCartButton";
+import BuyButton from "../../helpers/BuyButton";
+// import BuyButton from "../../helpers/BuyButton";
 
 const CardProductDetails = () => {
   const [data, setData] = useState({
@@ -141,9 +144,12 @@ const CardProductDetails = () => {
             <p className="text-slate-400 line-through">{displayINRCurrency(data?.price)}</p>
            </div>
 
-            <div className="flex items-center gap-3 my-2"> 
-            <button className="border-2  border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white">Buy</button>
-            <button className="border-2  border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:bg-white hover:text-red-600">Add To Cart</button>
+            <div className="flex items-center gap-3 my-2">
+              
+            {/* <button className="border-2  border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white" navigate={'/cart'}>Buy</button> */}
+            <BuyButton className="border-2  border-red-600 rounded px-3 py-1 min-w-[120px] text-red-600 font-medium hover:bg-red-600 hover:text-white" productId={data._id} />
+            {/* <button className="border-2  border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:bg-white hover:text-red-600">Add To Cart</button> */}
+           <AddToCartButton  className="border-2  border-red-600 rounded px-3 py-1 min-w-[120px] font-medium text-white bg-red-600 hover:bg-white hover:text-red-600" productId={data._id}   />  
            </div>
 
            <div>

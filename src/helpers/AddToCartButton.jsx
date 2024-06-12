@@ -3,7 +3,7 @@ import useCartStore from '../stateManagement/cartStore';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const AddToCartButton = ({ productId }) => {
+const AddToCartButton = ({ productId,className }) => {
   const fetchCartCount = useCartStore((state) => state.fetchCartCount);
 
   const addToCart = async (e) => {
@@ -30,7 +30,8 @@ const AddToCartButton = ({ productId }) => {
 
   return (
     <button 
-      className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
+      // className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full"
+      className={className}
       onClick={addToCart}
     >
       Add to cart

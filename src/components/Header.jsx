@@ -16,7 +16,9 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const searchInput = useLocation()
-  const [search , setSearch] = useState(searchInput?.search?.split("=")[1])
+  const URLSearch = new URLSearchParams(searchInput?.search)
+  const searchQuery = URLSearch.getAll('q')
+  const [search , setSearch] = useState(searchQuery)
 
   
 

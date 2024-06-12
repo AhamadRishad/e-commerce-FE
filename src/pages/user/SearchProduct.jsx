@@ -9,7 +9,7 @@ const SearchProduct = () => {
     const [data,setData] = useState([]);
     const [loading,setLoading] = useState(false);
 
-    console.log('query',query.search)
+    console.log('query  ::',query.search)
 
     const fetchSearchProduct = async () => {
         setLoading(true)
@@ -55,7 +55,7 @@ const SearchProduct = () => {
         {
             data.length !==0 && !loading && (
               
-          <VerticalCard loading={loading} data={data}/>
+          <VerticalCard className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full" loading={loading} data={data}/>
             )
         }
 

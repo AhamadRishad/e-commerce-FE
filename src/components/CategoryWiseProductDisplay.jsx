@@ -119,14 +119,14 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
                 >
                   Add to cart
                 </button> */}
-                  <AddToCartButton productId={product._id} />
+                  <AddToCartButton className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full" productId={product._id} />
               </div>
             </Link>
           );
         })
         )
       
-    
+  
     }
       </div>
     </div>
