@@ -75,6 +75,56 @@ const router= createBrowserRouter([
         // },
     ]     
 },
+
+// {
+//     path: "/",
+//     element: <App />,
+//     children: [
+//       {
+//         path: "/",
+//         element: <Home />
+//       },
+//       {
+//         path: "product-category",
+//         element: (
+//           <UserRoutes>
+//             <CategoryProduct />
+//           </UserRoutes>
+//         )
+//       },
+//       {
+//         path: "card-product-detail/:id",
+//         element: (
+//           <UserRoutes>
+//             <CardProductDetails />
+//           </UserRoutes>
+//         )
+//       },
+//       {
+//         path: "cart",
+//         element: (
+//           <UserRoutes>
+//             <Cart />
+//           </UserRoutes>
+//         )
+//       },
+//       {
+//         path: "search",
+//         element: (
+//           <UserRoutes>
+//             <SearchProduct />
+//           </UserRoutes>
+//         )
+//       },
+//       {
+//         path: "forgot-password",
+//         element: <ForgetPassword />
+//       }
+//     ]
+//   },
+
+
+
 {
     path:"/admin/sign-up",
     element:<AdminSignup/>

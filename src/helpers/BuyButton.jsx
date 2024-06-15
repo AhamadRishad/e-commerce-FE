@@ -30,7 +30,7 @@ const BuyButton = ({productId , className}) => {
         } catch (error) {
             navigate('/cart')
           console.error("Error adding to cart:", error);
-          toast.error(error.response?.data?.message || "Error adding to cart");
+          // toast.success(error.response?.data?.message || "Error adding to cart");
         }
       };
   return (
