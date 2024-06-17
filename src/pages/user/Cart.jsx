@@ -8,12 +8,14 @@ import { toast } from 'react-toastify';
 import displayINRCurrency from '../../helpers/displayCurrency';
 import { MdDelete } from 'react-icons/md';
 import Cookies from 'js-cookie'
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { totalProducts, fetchCartCount } = useCartStore();
   const loadingCart = new Array(totalProducts).fill(null);
+ 
 
   const fetchCart = async () => {
     setLoading(true);
@@ -116,6 +118,7 @@ const Cart = () => {
             console.log("verifyApi:", verifyApi);
             toast.success('Payment Successful');
             fetchCart();
+            fetchCartCount()
           } catch (error) {
             console.error('Error verifying payment:', error);
             toast.error('Error verifying payment');
@@ -157,9 +160,14 @@ const Cart = () => {
     <div className='container mx-auto'>
       <div className='text-center text-lg my-3'>
         {data.length === 0 && !loading && (
+          <> 
           <h1 className='text-center text-2xl border rounded m bg-white py-5 font-bold text-slate-500'>
             Cart is empty
           </h1>
+          <h2>
+            <Link className='text-center text-md  rounded m bg-white px-2 underline  text-slate-500 mt- hover:bg-slate-500 hover:text-white' to={'/see-all-orders'}>See all Orders</Link>
+          </h2>
+          </>
         )}
       </div>
 
@@ -209,14 +217,18 @@ const Cart = () => {
           )}
         </div>
         {/***Total product */}
+      
         {
           data[0] && (
+
             <div className='mt- py-3 lg:mt-0 w-full max-w-sm'>
             {loading ? (
               <div className='h-36 bg-slate-200 border rounded border-slate-300 animate-pulse'>
               </div>
             ) : (
+              <> 
               <div className='h-36 bg-white '>
+                
                 <h2 className='text-white bg-red-600 px-4 py-1'>Order Summary</h2>
                 <div className='flex items-center justify-between px-4 gap-2 mt-2 font-medium text-lg text-slate-600'>
                   <p>Quantity</p>
@@ -228,6 +240,11 @@ const Cart = () => {
                 </div>
                 <button className='bg-blue-600 p-2 mt-4 text-white w-full hover:bg-blue-700' onClick={() => handlePayment()}>Payment</button>
               </div>
+              <Link to={'/see-all-orders'}> 
+              <h1 className='pt-4 text-right  text-lg font-medium  rounded m  px-2 underline  text-slate-500  hover:text-slate-700'>Order Details</h1>
+              {/**Order details replace to navbar or align proper here  */}
+              </Link>
+              </>
             )}
           </div>
           )

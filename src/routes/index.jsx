@@ -23,6 +23,7 @@ import CategoryProduct from "../pages/user/CategoryProduct.jsx";
 import CardProductDetails from "../pages/user/CardProductDetails.jsx";
 import Cart from "../pages/user/Cart.jsx";
 import SearchProduct from "../pages/user/SearchProduct.jsx";
+import PurchaseDetails from "../pages/user/PurchaseDetails.jsx";
 
 
 const router= createBrowserRouter([
@@ -63,6 +64,10 @@ const router= createBrowserRouter([
         {
             path:"search",
             element:<SearchProduct/>
+        },
+        {
+            path:"see-all-orders",
+            element:<PurchaseDetails/>
         },
      
         {
