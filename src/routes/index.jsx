@@ -24,6 +24,7 @@ import CardProductDetails from "../pages/user/CardProductDetails.jsx";
 import Cart from "../pages/user/Cart.jsx";
 import SearchProduct from "../pages/user/SearchProduct.jsx";
 import PurchaseDetails from "../pages/user/PurchaseDetails.jsx";
+import ManagerPanel from "../pages/manager/ManagerPanel.jsx"
 
 
 const router= createBrowserRouter([
@@ -73,6 +74,10 @@ const router= createBrowserRouter([
         {
             path:"forgot-password",
             element:<ForgetPassword/>
+        },
+        {
+            path:'manager-panel',
+            element:<ManagerPanel/>
         },
         // {
         //     path:"sign-up",
