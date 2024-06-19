@@ -25,6 +25,10 @@ import Cart from "../pages/user/Cart.jsx";
 import SearchProduct from "../pages/user/SearchProduct.jsx";
 import PurchaseDetails from "../pages/user/PurchaseDetails.jsx";
 import ManagerPanel from "../pages/manager/ManagerPanel.jsx"
+import AllUser from "../pages/manager/AllUser.jsx";
+import AllAdmins from "../pages/manager/AllAdmins.jsx";
+import AllOrder from "../pages/manager/AllOrder.jsx";
+import ProductRequests from "../pages/manager/ProductRequests.jsx";
 
 
 const router= createBrowserRouter([
@@ -77,8 +81,27 @@ const router= createBrowserRouter([
         },
         {
             path:'manager-panel',
-            element:<ManagerPanel/>
+            element:<ManagerPanel/>,
+            children:[
+                {
+                    path:'manager/all-user',
+                    element:<AllUser/>
+                },
+                {
+                    path:'manager/all-admins',
+                    element:<AllAdmins/>
+                },
+                {
+                    path:'manager/all-orders',
+                    element:<AllOrder/>
+                },
+                {
+                    path:'manager/product-requests',
+                    element:<ProductRequests/>
+                },
+            ]
         },
+       
         // {
         //     path:"sign-up",
         //     element:<Signup/>

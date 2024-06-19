@@ -49,6 +49,67 @@
 
 // export default AdminPanel 
 
+// import React from 'react'
+// import { FaRegCircleUser } from 'react-icons/fa6'
+// import { Link, Outlet } from 'react-router-dom'
+
+// const ManagerPanel = () => {
+
+
+//   return (
+//     <>  
+//     {/* <div > 
+//       <h1 className='@media (min-width: 768px) { ... }'>hellow</h1>
+//     </div> */}
+//     <div className='min-h-[calc(100vh-100px)] md:flex hidden'>
+//         <aside className='bg-white min-h-full  w-full  max-w-60 customShadow'>
+//         <div className='h-32  flex justify-center items-center flex-col'>
+//         <div className='text-5xl cursor-pointer relative flex justify-center'> 
+//           <FaRegCircleUser/>
+//           </div>
+//           <p className='capitalize text-lg font-semibold'>Rishad</p>
+//         <p className='text-sm'>Admin</p> 
+//         </div>
+
+//         <div>   
+//                  <nav className='grid p-4'>
+//                     <Link to={'manager/all-user'}className='px-2 py-1 hover:bg-slate-100 ' > All Users</Link>
+//                     <Link to={'manager/all-admins'}className='px-2 py-1 hover:bg-slate-100 ' > All Admin</Link>
+//                     <Link to={'manager/all-orders'}className='px-2 py-1 hover:bg-slate-100 ' > All Orders</Link>
+//                     <Link to={'manager/product-requests'}className='px-2 py-1 hover:bg-slate-100 ' > All Products</Link>
+//                     {/* <Link to={}> All Products</Link> */}
+//                  </nav>
+//              </div>  
+           
+//         </aside>
+
+
+//         <main  className='w-full h-full p-2'>
+//         <Outlet/>
+//         </main>
+
+
+//     </div>
+   
+//     </>
+//   )
+// }
+
+// export default ManagerPanel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React from 'react'
 import { FaRegCircleUser } from 'react-icons/fa6'
 import { Link, Outlet } from 'react-router-dom'
@@ -56,37 +117,30 @@ import { Link, Outlet } from 'react-router-dom'
 const ManagerPanel = () => {
   return (
     <>  
-    {/* <div > 
-      <h1 className='@media (min-width: 768px) { ... }'>hellow</h1>
-    </div> */}
-    <div className='min-h-[calc(100vh-100px)] md:flex hidden'>
-        <aside className='bg-white min-h-full  w-full  max-w-60 customShadow'>
-        <div className='h-32  flex justify-center items-center flex-col'>
-        <div className='text-5xl cursor-pointer relative flex justify-center'> 
-          <FaRegCircleUser/>
+      <div className='min-h-[calc(100vh-100px)] flex flex-col md:flex-row'>
+        <aside className='bg-white min-h-full w-full md:w-1/4 lg:w-1/5 customShadow'>
+          <div className='h-32 flex justify-center items-center flex-col'>
+            <div className='text-5xl cursor-pointer relative flex justify-center'> 
+              <FaRegCircleUser/>
+            </div>
+            <p className='capitalize text-lg font-semibold'>Rishad</p>
+            <p className='text-sm'>Admin</p> 
           </div>
-          <p className='capitalize text-lg font-semibold'>Rishad</p>
-        <p className='text-sm'>Admin</p> 
-        </div>
 
-        <div>   
-                 <nav className='grid p-4'>
-                     <p  className='px-2 py-1 hover:bg-slate-100'>All admins</p>  {/*  put here Link instead of <p> path all-admins */}
-                     <p   className='px-2 py-1 hover:bg-slate-100'>All product</p>  {/*  put here Link path all-admin-products */}
-                     <Link to={"manager-panel"} className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded">manager panel</Link>
-                 </nav>
-             </div>  
-           
+          <div>   
+            <nav className='grid p-4'>
+              <Link to={'manager/all-user'} className='px-2 py-1 hover:bg-slate-100'> All Users</Link>
+              <Link to={'manager/all-admins'} className='px-2 py-1 hover:bg-slate-100'> All Admin</Link>
+              <Link to={'manager/all-orders'} className='px-2 py-1 hover:bg-slate-100'> All Orders</Link>
+              <Link to={'manager/product-requests'} className='px-2 py-1 hover:bg-slate-100'> All Products</Link>
+            </nav>
+          </div>  
         </aside>
 
-
-        <main  className='w-full h-full p-2'>
-        <Outlet/>
+        <main className='w-full h-full p-2'>
+          <Outlet/>
         </main>
-
-
-    </div>
-   
+      </div>
     </>
   )
 }
