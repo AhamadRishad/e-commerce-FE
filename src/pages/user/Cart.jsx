@@ -20,8 +20,15 @@ const Cart = () => {
   const fetchCart = async () => {
     setLoading(true);
     try {
+      const token = Cookies.get('token')
       const res = await axios.get(
         "http://localhost:3000/api/v1/user/user-added-all-cart",
+        {
+          header:{
+            // 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        },
         { withCredentials: true }
       );
       const dataResponse = res.data.userAllCart;
@@ -35,10 +42,17 @@ const Cart = () => {
   };
 
   const fetchQtyOperator = async (productId, operator) => {
-    console.log("productId :", productId)
+    // console.log("productId :", productId)
+    const token = Cookies.get('token')
     try { 
       const res = await axios.post(
         "http://localhost:3000/api/v1/user/add-quantity",
+        {
+          header:{
+            // 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`            
+          }
+        },
         { productId, operator },
         { withCredentials: true }
       );
@@ -59,10 +73,16 @@ const Cart = () => {
   };
 
   const deleteCart = async (productId) => {
+    const token = Cookies.get('token')
     setLoading(true)
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/delete-cart-from-user",
+        "http://localhost:3000/api/v1/user/delete-cart-from-user",{
+          header:{
+            // 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        },
         { productId },
         { withCredentials: true }
       );

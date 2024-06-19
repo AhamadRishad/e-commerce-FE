@@ -2,6 +2,7 @@ import React from 'react';
 import useCartStore from '../stateManagement/cartStore';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie'
 
 const AddToCartButton = ({ productId,className }) => {
   const fetchCartCount = useCartStore((state) => state.fetchCartCount);
@@ -11,8 +12,14 @@ const AddToCartButton = ({ productId,className }) => {
     e?.preventDefault();
 
     try {
+      const token = Cookies.get('token')
       const res = await axios.post(
         "http://localhost:3000/api/v1/user/add-to-cart",
+        {
+          header:{
+           'Authorization': `Bearer ${token}`
+          },
+        },
         { productId },
         { withCredentials: true }
       );

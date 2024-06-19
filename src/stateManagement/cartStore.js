@@ -11,6 +11,11 @@ const useCartStore = create((set) => ({
       const res = await axios.get(
         "http://localhost:3000/api/v1/user/quantity-count",
         {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+        {
           withCredentials: true,
         }
       );
