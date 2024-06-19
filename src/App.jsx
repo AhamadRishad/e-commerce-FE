@@ -11,6 +11,7 @@ function App() {
   
   return (
     <>
+    <div className="bg-slate-100 dark:bg-gray-900 text-black dark:text-white"> 
      <Header />
       <main className="min-h-[calc(100vh-100px)] pt-16"> 
         <Outlet />
@@ -29,6 +30,7 @@ function App() {
                 className="md:top-4 md:right-4 md:bottom-auto md:left-auto bottom-4 right-4 "
             />
       <Footer />
+      </div>
 
     </>
   );

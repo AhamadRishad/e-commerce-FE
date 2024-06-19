@@ -66,16 +66,16 @@ const VerticalCardProducts = ({ category, heading }) => {
         className="flex items-center gap-4 md:gap-6 overflow-x-scroll scrollbar-none transition-all"
         ref={scrollElement}
       >
-        <button className="bg-white shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block"
+        <button className=" dark:bg-black shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block"
             onClick={scrollLeft}
         >
-          <FaAngleLeft />
+          <FaAngleLeft className="text-gray-900 dark:text-gray-100"/>
         </button>
         <button
-          className="bg-white shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block"
+          className="dark:bg-black shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block"
           onClick={scrollRight}
         >
-          <FaAngleRight />
+          <FaAngleRight className="text-gray-900 dark:text-gray-100"/>
         </button>
         {
 

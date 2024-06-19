@@ -66,9 +66,13 @@ const BannerProduct = () => {
     <div className='h-56 md:h-72 w-full bg-slate-200 relative'>
 
             <div className='absolute z-10 h-full w-full md:flex items-center hidden '>
-                <div className=' flex justify-between w-full text-2xl'>
-                    <button onClick={preveImage} className='bg-white shadow-md rounded-full p-1'><FaAngleLeft/></button>
-                    <button onClick={nextImage} className='bg-white shadow-md rounded-full p-1'><FaAngleRight/></button> 
+                <div className=' flex justify-between w-full text-2xl '>
+                    <button onClick={preveImage} className='bg-white shadow-md  rounded-full  p-1'>
+                        <FaAngleLeft  className="text-gray-900 dark:text-gray-900"/>
+                    </button>
+                    <button onClick={nextImage} className='bg-white shadow-md rounded-full p-1'>
+                        <FaAngleRight  className="text-gray-900 dark:text-gray-900"/>
+                    </button> 
                 </div>
             </div>
 

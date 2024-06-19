@@ -7,6 +7,7 @@ import DigitalMartLogo from "../assets/DigitalMart.jpg";
 import useCartStore from "../stateManagement/cartStore";
 import Cookies from "js-cookie";
 import axios from "axios";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const Header = () => {
     }
   };
   return (
-    <header className="h-16 shadow-md bg-white fixed w-full z-40">
+    <header className="h-16 shadow-md bg-white fixed w-full  z-40">
       <div className="h-full  mx-auto flex items-center justify-between px-4">
         <div>
           <Link to={"/"}>
@@ -88,19 +89,19 @@ const Header = () => {
             value={search}
           ></input>
           <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
-            <GrSearch />
+            <GrSearch className="text-gray-900 dark:text-gray-900" />
           </div>
         </div>
 
-        <div className=" flex items-center gap-7">
-          <div className="relative  flex justify-center shadow-lg">
+        <div className=" flex items-center lg:gap-7 gap-3">
+          <div className="relative  flex justify-center shadow-lg rounded-full">
             {
               // user._id &&    => edit when connected axios => if user is not available or not logged in dont show the FaRegCircleUser icon
               <div
                 className="text-3xl cursor-pointer relative flex justify-center"
                 onClick={() => setMenuDisplay((preve) => !preve)}
               >
-                <FaRegCircleUser />
+                <FaRegCircleUser  className="text-gray-900 dark:text-gray-900"/>
               </div>
             }
 
@@ -110,7 +111,7 @@ const Header = () => {
                   {isManager === "manager" ? (
                     <Link
                       to={"/manager-panel"}
-                      className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded"
+                      className="whitespace-nowrap  md:block dark:hover:bg-slate-200 dark:hover:text-gray-900 dark:bg-gray-900 hover:bg-slate-100 p-2 rounded"
                     >
                       Manager Panel
                     </Link>
@@ -129,12 +130,14 @@ const Header = () => {
 
           <Link to={"/cart"} className="text-2xl cursor-pointer relative ">
             <span>
-              <FaShoppingCart />
+              <FaShoppingCart className="text-gray-900 dark:text-gray-900"/>
             </span>
             <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3">
               <p className="text-sm">{totalProducts}</p>
             </div>
           </Link>
+
+          <ThemeToggle/>
 
           {/* <div>
             <Link to={"/login"} className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700">Login</Link>
