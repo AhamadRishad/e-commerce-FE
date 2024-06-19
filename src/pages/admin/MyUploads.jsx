@@ -134,7 +134,7 @@ const MyUploads = () => {
                     )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
-                    {product.status}
+                    {product.STATUS}
                   </td>
                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full">
                     <div className='flex gap-2 items-center pt-'>
