@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import ThemeToggle from "./ThemeToggle";
 import { toast } from "react-toastify";
+import Cookies from 'js-cookie'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -27,8 +28,14 @@ const Header = () => {
 
   const fetchIsManagerORGeneral = async () => {
     try {
+      const token = Cookies.get('token')
       const res = await axios.get(
         "http://localhost:3000/api/v1/user/check-manager",
+      {
+        header: {
+          'Authorization': `Bearer ${token}`
+         },
+      },
         {
           withCredentials: true,
         }
