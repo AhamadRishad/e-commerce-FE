@@ -19,8 +19,16 @@ const UserRoutes = ({ children }) => {
 
     const checkUser = async () => {
       try {
+        const token = Cookies.get('token');
         console.log("hitted to api token")
-        const res = await axios.get("http://localhost:3000/api/v1/user/check-user", {
+        const res = await axios.get("http://localhost:3000/api/v1/user/check-user", 
+          {
+           headers:{
+            Authorization: `Bearer ${token}`,
+           }
+          },
+          {
+        
           withCredentials: true
         });
         const data = res.data;
