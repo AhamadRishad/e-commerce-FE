@@ -8,6 +8,7 @@ import useCartStore from "../stateManagement/cartStore";
 import Cookies from "js-cookie";
 import axios from "axios";
 import ThemeToggle from "./ThemeToggle";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -53,8 +54,11 @@ const Header = () => {
 
   const handleLogout = () => {
     // create an api to remove token
+    toast.success('LogOut success');
     Cookies.remove("token");
     setIsLoggedIn(false);
+    
+    alert('succs')
     navigate("/login", { replace: true });
   };
 

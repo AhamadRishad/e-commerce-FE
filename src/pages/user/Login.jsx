@@ -20,11 +20,13 @@ const Login = () => {
       
       console.log(data);
       console.log(res.data);
-      toast.success('Login successfull');
+    
       Cookies.set('token', res.data.token)
+      toast.success('Login successfull');
       navigate("/")
     } catch (error) {
       console.log(error);
+      toast.error("Login failed");
     }
   };
 

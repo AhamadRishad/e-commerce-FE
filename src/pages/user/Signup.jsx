@@ -31,10 +31,11 @@ const Signup = () => {
        const res = await axios.post("http://localhost:3000/api/v1/user/signup",data);
       console.log(res.data);
       Cookies.set('token', res.data.token)
-      toast.success('Login successfull');
+      toast.success('Signed success');
       navigate("/login")
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 

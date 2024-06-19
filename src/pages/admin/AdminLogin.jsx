@@ -49,10 +49,11 @@ const AdminLogin = () => {
     //       toast.success('Login successfull');
     //     }
     
-    toast.success('Login successfull');
+    toast.success('Login successfully');
       navigate("/admin/my-upload")
     } catch (error) {
       console.log(error);
+      toast.error('login Failed')
     }
   };
 
