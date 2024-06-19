@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import ThemeToggle from "./ThemeToggle";
 import { toast } from "react-toastify";
-import Cookies from 'js-cookie'
+
 
 const Header = () => {
   const navigate = useNavigate();
