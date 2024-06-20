@@ -324,6 +324,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import displayINRCurrency from "../../helpers/displayCurrency";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const PurchaseDetails = () => {
   const [data, setData] = useState([]);
@@ -353,9 +354,13 @@ const PurchaseDetails = () => {
         }
       );
 
+      toast.success('Review submitted successfully');
+      setReview(''); // Clear the textarea
+      
       console.log('Review submitted successfully:', response.data);
       // Optionally, you can handle success message or redirect here
     } catch (error) {
+      toast.error('Error submitting review');
       console.error('Error submitting review:', error);
       // Handle error state or display error message
     }
@@ -403,31 +408,35 @@ const PurchaseDetails = () => {
         <>
           {!data[0] && <p>No order available</p>}
 
-          <div className="p-4 w-full">
+          <div className="p-4 w-full ">
             {data.map((item, index) => (
               <div key={index}>
                 <p className="font-medium text-lg">
                   {moment(item.date).format("LL")}
                 </p>
-                <div className="border rounded">
-                  <div className="flex flex-col lg:flex-row justify-between dark:bg-gray-700">
-                    <div className="grid gap-1">
+                <div className="border rounded bg-slate-300">
+                  <div className="flex flex-col lg:flex-row justify-between dark:bg-gray-600">
+                    <div className="grid gap-1  ">
                       {item.userAllCart.map((cartItem, cartIndex) => (
-                        <div key={cartIndex} className="flex gap-3 bg-slate-100 dark:bg-gray-700">
-                          <img
+                        <div key={cartIndex} className="flex gap-3  ">
+                          <div className="dark:bg-slate-200"> 
+                        <img 
                             src={cartItem.productDetails.image}
                             alt=""
-                            className="w-28 h-28 bg-slate-200 object-scale-down p-2 mix-blend-multiply"
+                            className="w-36 h-36 bg-slate-300 object-scale-down   p-2 mix-blend-multiply"
                           />
+                          </div>
+                        
+                        
                           <div>
-                            <div className="font-medium dark:text-white text-gray-900 text-lg text-ellipsis line-clamp-1">
+                            <div className="font-medium dark:text-white text-gray-900 text-lg text-ellipsis line-clamp-1 ">
                               {cartItem.productDetails.productName}
                             </div>
-                            <div className="flex items-center gap-5 mt-1">
+                            <div className="flex items-center gap-5 mt-">
                               <div className="text-lg text-red-500">
                                 {displayINRCurrency(cartItem.productDetails.price)}
                               </div>
-                              <p>Quantity: {cartItem.quantity}</p>
+                              <p className="">Quantity: {cartItem.quantity}</p>
                             </div>
                             <div>
                               <form onSubmit={(e) => {
@@ -436,14 +445,16 @@ const PurchaseDetails = () => {
                                 handleSubmit(e);
                               }}>
                                 <textarea
-                                  className="rounded lg:w-80"
-                                  placeholder="Add Review"
+                                  className="rounded lg:w-80 dark:bg-slate-300 bg-slate-50"
+                                  placeholder="  Add Review"
                                   value={review}
                                   onChange={handleTextareaChange}
                                 />
-                                <button type="submit" className="btn btn-primary mt-2">
+                                <div> 
+                                <button type="submit" className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">
                                   Submit Review
                                 </button>
+                                </div>
                               </form>
                             </div>
                           </div>

@@ -180,7 +180,7 @@ const AllOrder = () => {
                       {item.userAllCart.map((cartItem, index) => {
                         const productDetails = cartItem.productDetails;
                         return (
-                          <div key={index} className="flex gap-3 bg-slate-300">
+                          <div key={index} className="flex gap-3  bg-slate-300">
                             {productDetails && productDetails.image ? (
                               <img
                                 src={productDetails.image}
@@ -193,14 +193,14 @@ const AllOrder = () => {
                               </div>
                             )}
                             <div>
-                              <div className="font-medium text-lg text-ellipsis line-clamp-1">
+                              <div className="font-medium text-lg text-ellipsis line-clamp-1 dark:text-gray-900">
                                 {productDetails ? productDetails.productName : "Unknown Product"}
                               </div>
                               <div className="flex items-center gap-5 mt-1">
                                 <div className="text-lg text-red-500">
                                   {productDetails ? displayINRCurrency(productDetails.price) : "N/A"}
                                 </div>
-                                <p>Quantity: {cartItem.quantity}</p>
+                                <p className='dark:text-gray-900'>Quantity: {cartItem.quantity}</p>
                               </div>
                             </div>
                           </div>
