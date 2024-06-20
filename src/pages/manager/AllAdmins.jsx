@@ -30,7 +30,6 @@ const AllAdmins = () => {
         setLoading(false);
       } catch (err) {
         console.error("Error fetching products:", err);
-        setError(err);
         setLoading(false);
       }
     };
