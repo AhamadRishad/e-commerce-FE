@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { ImBlocked } from "react-icons/im";
+import Cookies from "js-cookie";
 
 const truncateText = (text, maxLength = 10) => {
   if (text.length > maxLength) {
@@ -17,9 +18,15 @@ const AllAdmins = () => {
   useEffect(() => {
     setLoading(true);
     const fetchProducts = async () => {
+      const token = Cookies.get('token')
       try {
         const response = await axios.get(
           "http://localhost:3000/api/v1/manager/all-admins",
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+             },
+          },
           {
             withCredentials: true, // Ensure cookies are sent with the request
           }
