@@ -32,7 +32,7 @@ const Header = () => {
       const res = await axios.get(
         "http://localhost:3000/api/v1/user/check-manager",
       {
-        header: {
+        headers: {
           'Authorization': `Bearer ${token}`
          },
       },
