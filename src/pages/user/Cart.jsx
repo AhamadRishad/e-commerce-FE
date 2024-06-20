@@ -88,7 +88,7 @@ const Cart = () => {
         "http://localhost:3000/api/v1/user/delete-cart-from-user",
         { productId },
         {
-          header:{
+          headers:{
             // 'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },

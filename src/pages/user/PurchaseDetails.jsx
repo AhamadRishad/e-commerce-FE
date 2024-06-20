@@ -2,16 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import displayINRCurrency from "../../helpers/displayCurrency";
+import Cookies from "js-cookie";
 
 const PurchaseDetails = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchPurchaseDetails = async () => {
+    const token = Cookies.get('token');
     setLoading(true);
     try {
       const res = await axios.get(
         "http://localhost:3000/api/v1/payment/order-details",
+        {
+          headers:{
+           'Authorization': `Bearer ${token}`
+          }
+        },
         {
           withCredentials: true,
         }
