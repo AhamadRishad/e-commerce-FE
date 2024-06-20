@@ -18,7 +18,14 @@ const ProtectedRoute = ({children}) => {
     
     const checkUser = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/v1/admin/check-admin', {
+        const AdminToken = Cookies.get('AdminToken')
+        const res = await axios.get('http://localhost:3000/api/v1/admin/check-admin', 
+          {
+            headers: {
+              'Authorization': `Bearer ${AdminToken}`
+             },
+          },
+          {
           withCredentials: true
         })
         const data = res.data;
