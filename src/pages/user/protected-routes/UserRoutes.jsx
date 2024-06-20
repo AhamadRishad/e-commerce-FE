@@ -24,7 +24,7 @@ const UserRoutes = ({ children }) => {
         const res = await axios.get("http://localhost:3000/api/v1/user/check-user", 
           {
            headers:{
-            Authorization: `Bearer ${token}`,
+            Authorization: `token ${token}`,          
            }
           },
           {
