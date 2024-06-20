@@ -17,7 +17,7 @@ const AddToCartButton = ({ productId,className }) => {
         "http://localhost:3000/api/v1/user/add-to-cart",
         { productId },
         {
-          header:{
+          headers:{
            'Authorization': `Bearer ${token}`
           },
         },

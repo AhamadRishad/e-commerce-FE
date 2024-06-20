@@ -20,11 +20,11 @@ const Cart = () => {
   const fetchCart = async () => {
     setLoading(true);
     try {
-      const token = Cookies.get('token')
+      const token = Cookies.get('token');
       const res = await axios.get(
         "http://localhost:3000/api/v1/user/user-added-all-cart",
         {
-          header:{
+          headers:{
             // 'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
@@ -47,14 +47,17 @@ const Cart = () => {
     try { 
       const res = await axios.post(
         "http://localhost:3000/api/v1/user/add-quantity",
-        {
-          header:{
-            // 'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`            
-          }
-        },
         { productId, operator },
-        { withCredentials: true }
+        {
+          headers:{
+          
+           ' Authorization': `token ${token}`            
+          },
+          withCredentials: true
+
+        },
+       
+        // { withCredentials: true }
       );
       setData(prevData =>
         prevData.map(item =>
@@ -72,19 +75,27 @@ const Cart = () => {
     }
   };
 
+ 
+
+
+
+
   const deleteCart = async (productId) => {
     const token = Cookies.get('token')
     setLoading(true)
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/delete-cart-from-user",{
+        "http://localhost:3000/api/v1/user/delete-cart-from-user",
+        { productId },
+        {
           header:{
             // 'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
-          }
+          },
+         withCredentials:true
         },
-        { productId },
-        { withCredentials: true }
+       
+       
       );
       setLoading(false)
       fetchCartCount()
