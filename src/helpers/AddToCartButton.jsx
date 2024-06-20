@@ -15,12 +15,13 @@ const AddToCartButton = ({ productId,className }) => {
       const token = Cookies.get('token')
       const res = await axios.post(
         "http://localhost:3000/api/v1/user/add-to-cart",
+        { productId },
         {
           header:{
            'Authorization': `Bearer ${token}`
           },
         },
-        { productId },
+      
         { withCredentials: true }
       );
       const responseData = res.data;
