@@ -445,6 +445,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const truncateText = (text, maxLength) => {
   if (text.length > maxLength) {
@@ -459,8 +460,14 @@ const ProductRequests = () => {
 
   const fetchActiveProduct = async (productID, status) => {
     try {
+      const token = Cookies.get('token')
       const res = await axios.post(
         "http://localhost:3000/api/v1/manager/active-product",
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+           },
+        },
         {
           productID: productID,
           status: status,
@@ -492,8 +499,14 @@ const ProductRequests = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
+      const token = Cookies.get('token')
       const response = await axios.get(
         "http://localhost:3000/api/v1/manager/verify-product",
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+           },
+        },
         {
           withCredentials: true,
         }

@@ -119,6 +119,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import displayINRCurrency from '../../helpers/displayCurrency';
+import Cookies from 'js-cookie';
 
 const AllOrder = () => {
   const [data, setData] = useState([]);
@@ -127,8 +128,14 @@ const AllOrder = () => {
   const fetchPurchaseDetails = async () => {
     setLoading(true);
     try {
+      const token = Cookies.get('token')
       const res = await axios.get(
         'http://localhost:3000/api/v1/manager/all-orders',
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+           },
+        },
         {
           withCredentials: true,
         }
