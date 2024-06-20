@@ -447,7 +447,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
-const truncateText = (text, maxLength) => {
+const truncateText = (text, maxLength = 10) => {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + "...";
   }
@@ -464,15 +464,13 @@ const ProductRequests = () => {
       const res = await axios.post(
         "http://localhost:3000/api/v1/manager/active-product",
         {
-          headers: {
-            'Authorization': `Bearer ${token}`
-           },
-        },
-        {
           productID: productID,
           status: status,
         },
         {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
           withCredentials: true,
         }
       );
@@ -609,7 +607,7 @@ const ProductRequests = () => {
                       {index + 1}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-md text-gray-900 font-medium">
-                      {product.productName}
+                      {truncateText(product.productName)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
                       {product.brandName}
@@ -621,7 +619,7 @@ const ProductRequests = () => {
                       {product.category}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 ">
-                      {truncateText(product.description, 25)}
+                      {truncateText(product.description)}
                     </td>
                     <td className="px-4 py-1 whitespace-nowrap text-sm text-gray-900 font-bold ">
                       {product.image ? (

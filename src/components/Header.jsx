@@ -138,8 +138,10 @@ const Header = () => {
               </div>
             )}
           </div>
-
-          <Link to={"/cart"} className="text-2xl cursor-pointer relative ">
+          { isManager === 'manager' ? (
+            <></>
+          )  :(
+            <Link to={"/cart"} className="text-2xl cursor-pointer relative ">
             <span>
               <FaShoppingCart className="text-gray-900 dark:text-gray-900"/>
             </span>
@@ -147,6 +149,12 @@ const Header = () => {
               <p className="text-sm">{totalProducts}</p>
             </div>
           </Link>
+          )
+         
+          }
+         
+
+         
 
           <ThemeToggle/>
 

@@ -167,7 +167,7 @@ const AllOrder = () => {
         <>
           {!data[0] && <p>No order available</p>}
 
-          <div className="p-4 w-full">
+          <div className="p-4 w-full mb-20">
             {data.map((item, index) => (
               <div key={index} className="mb-4 lg:p-4">
                 <p className="font-medium text-lg">

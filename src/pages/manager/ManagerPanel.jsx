@@ -117,29 +117,33 @@ import { Link, Outlet } from 'react-router-dom'
 const ManagerPanel = () => {
   return (
     <>  
-      <div className='min-h-[calc(100vh-100px)] flex flex-col md:flex-row'>
-        <aside className='bg-white min-h-full w-full md:w-1/4 lg:w-1/5 customShadow'>
-          <div className='h-32 flex justify-center items-center flex-col'>
+     <div className="bg-slate-100 dark:bg-gray-900 text-black dark:text-white"> 
+      <div className='min-h-[calc(100vh-100px)] flex flex-col md:flex-row overflow-hidden'>
+        <aside className='bg-slate-200 dark:bg-black text-black dark:text-white min-h-full w-full md:w-1/4 lg:w-1/5 customShadow'>
+          {/* <div className='h-32 flex justify-center items-center flex-col'>
             <div className='text-5xl cursor-pointer relative flex justify-center'> 
-              <FaRegCircleUser/>
-            </div>
-            <p className='capitalize text-lg font-semibold'>Rishad</p>
-            <p className='text-sm'>Admin</p> 
-          </div>
+               <FaRegCircleUser/>
+             </div>
+             <p className='capitalize text-lg font-semibold'>Rishad</p>
+             <p className='text-sm'>Admin</p>  
+          </div>   */}
 
           <div>   
-            <nav className='grid p-4'>
-              <Link to={'manager/all-user'} className='px-2 py-1 hover:bg-slate-100'> All Users</Link>
-              <Link to={'manager/all-admins'} className='px-2 py-1 hover:bg-slate-100'> All Admin</Link>
-              <Link to={'manager/all-orders'} className='px-2 py-1 hover:bg-slate-100'> All Orders</Link>
-              <Link to={'manager/product-requests'} className='px-2 py-1 hover:bg-slate-100'> All Products</Link>
+            <nav className='grid p-4 w-40 '>
+              <Link to={'manager/all-user'} className='px-2 py-1 hover:bg-slate-100 dark:hover:bg-gray-800 rounded'> All Users</Link>
+              <Link to={'manager/all-admins'} className='px-2 py-1 hover:bg-slate-100 dark:hover:bg-gray-800 rounded'> All Admin</Link>
+              <Link to={'manager/all-orders'} className='px-2 py-1 hover:bg-slate-100 dark:hover:bg-gray-800 rounded'> All Orders</Link>
+              <Link to={'manager/product-requests'} className='px-2 py-1 hover:bg-slate-100 dark:hover:bg-gray-800 rounded'> All Products</Link>
             </nav>
           </div>  
         </aside>
 
         <main className='w-full h-full p-2'>
+        <div className="bg-slate-100 dark:bg-gray-900 text-black dark:text-white"> 
           <Outlet/>
+          </div>
         </main>
+      </div>
       </div>
     </>
   )
