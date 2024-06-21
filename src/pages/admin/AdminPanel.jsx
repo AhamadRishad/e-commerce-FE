@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify'
 const AdminPanel = () => {
   return (
     <div>
+          <div className="bg-slate-100 dark:bg-gray-900 text-black dark:text-white">   
 
        <AdminNavbar/>
        
@@ -19,6 +20,7 @@ const AdminPanel = () => {
         <Outlet/>
         <ToastContainer autoClose='700' position='bottom-right'></ToastContainer>
         {/* neeed footer */}
+    </div>
     </div>
   )
 }

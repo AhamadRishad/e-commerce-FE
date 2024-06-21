@@ -100,8 +100,8 @@ const UploadCart = () => {
 
   return (
     <div className="p-2">
-      <div className="fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
-        <div className="bg-white py-6 px-3 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
+      <div className="fixed w-full h-full bg-slate-200 dark:bg-gray-900 dark:bg-opacity-35   bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+        <div className="bg-white dark:bg-gray-900 py-6 px-3 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
           <div className="flex justify-between items-center">
             <h2 className="font-bold text-xl ml-4">Upload Product</h2>
             <div
@@ -113,20 +113,20 @@ const UploadCart = () => {
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid p-4 gap-3 overflow-y-scroll h-full pb-5"
+            className="grid p-4 gap-3 overflow-y-scroll h-full pb-5 "
           >
             <input
               {...register("productName")}
               type="text"
               placeholder="Product Name"
-              className="p-2 bg-slate-100 border rounded"
+              className="p-2 bg-slate-100 dark:bg-slate-400 dark:text-black border dark:placeholder-gray-950 rounded "
             />
             {errors.productName && <p className="text-red-600">{errors.productName.message}</p>}
             <input
               {...register("brandName")}
               type="text"
               placeholder="Brand Name"
-              className="p-2 bg-slate-100 border rounded"
+              className="p-2 bg-slate-100 border rounded dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
             />
             {errors.brandName && <p className="text-red-600">{errors.brandName.message}</p>}
 
@@ -138,7 +138,7 @@ const UploadCart = () => {
               {...register("sellingPrice")}
               type="text"
               placeholder="selling Price"
-              className="p-2 bg-slate-100 border rounded w-full"
+              className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
             />
             {errors.sellingPrice && <p className="text-red-600">{errors.sellingPrice.message}</p>}
             </div>
@@ -151,7 +151,7 @@ const UploadCart = () => {
               {...register("price")}
               type="text"
               placeholder="Price"
-              className="p-2 bg-slate-100 border rounded w-full"
+              className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
             />
             {errors.price && <p className="text-red-600">{errors.price.message}</p>}
             </div>
@@ -165,12 +165,16 @@ const UploadCart = () => {
             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
               <div className="flex-1 w-full lg:w-1/2">
                 <select
-                  className="p-2 bg-slate-100 border rounded w-full"
+                  className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
                   {...register("category")}
                 >
-                  <option value="">Select Category</option>
+                  <option
+                   className="dark:text-gray-950"
+                  value="">Select Category</option>
                   {productCategory.map((product, index) => (
-                    <option key={index} value={product.value}>
+                    <option
+                    className="dark:text-gray-950"
+                     key={index} value={product.value}>
                       {product.label}
                     </option>
                   ))}
@@ -179,12 +183,14 @@ const UploadCart = () => {
               </div>
               <div className="flex-1 w-full lg:w-1/2">
                 <select
-                  className="p-2 bg-slate-100 border rounded w-full"
+                  className="p-2 bg-slate-100 border rounded w-full dark:text-black  dark:bg-slate-400 dark:placeholder-gray-950"
                   {...register("adminEmail")}
                 >
                   <option value="">Select Your Email</option>
                   {AllAdmins.map((admin, index) => (
-                    <option key={index} value={admin.email}>
+                    <option 
+                     className="dark:text-gray-950"
+                    key={index} value={admin.email}>
                       {admin.email}
                     </option>
                   ))}
@@ -193,12 +199,12 @@ const UploadCart = () => {
               </div>
             </div>
             <label htmlFor="productImage">
-              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer">
+              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
                 <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
                   <span className="text-4xl">
-                    <IoCloudUploadSharp />
+                    <IoCloudUploadSharp className="dark:text-gray-950" />
                   </span>
-                  <p className="text-sm">Upload Product Image</p>
+                  <p className="text-sm dark:text-gray-950 ">Upload Product Image</p>
                   <input
                     id="productImage"
                     {...register("image")}
@@ -212,12 +218,12 @@ const UploadCart = () => {
             <textarea
               {...register("description")}
               placeholder="Enter product description"
-              className="p-2 bg-slate-100 border rounded resize-none h-28"
+              className="p-2 bg-slate-100 border rounded resize-none h-28 dark:bg-slate-400 dark:placeholder-gray-950 dark:text-black"
             />
             {errors.description && <p className="text-red-600">{errors.description.message}</p>}
             <input
               type="submit"
-              className="bg-red-600 text-white mb-10 px-3 py-2 rounded hover:bg-red-700"
+              className="bg-red-600 text-white mb-10 px-3 py-2 rounded hover:bg-red-700 "
             />
           </form>
         </div>

@@ -457,27 +457,27 @@ const CategoryProduct = () => {
     useEffect(() => {}, [sortBy]);
 
     return (
-        <div className='container mx-auto p-4'>
+        <div className='container mx-auto p-4 '>
             {/*** desktop version */}
             <div className='hidden lg:grid grid-cols-[200px,1fr]'>
                 {/*** left side */}
-                <div className='bg-white p-2 min-h-[calc(100vh-120px)] overflow-y-scroll scrollbar-none'>
+                <div className='bg-white p-2 min-h-[calc(100vh-120px)] overflow-y-scroll scrollbar-none dark:bg-gray-500'>
                     <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Sort by</h3>
+                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 dark:text-gray-900'>Sort by</h3>
                         <form className='text-sm flex flex-col gap-2 py-2'>
-                            <div className='flex items-center gap-3'>
+                            <div className='flex items-center gap-3 dark:text-black'>
                                 <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
                                 <label>Price - Low to High</label>
                             </div>
-                            <div className='flex items-center gap-3'>
+                            <div className='flex items-center gap-3 dark:text-black'>
                                 <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
                                 <label>Price - High to Low</label>
                             </div>
                         </form>
                     </div>
                     <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300'>Category</h3>
-                        <form className='text-sm flex flex-col gap-2 py-2'>
+                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 dark:text-gray-900'>Category</h3>
+                        <form className='text-sm flex flex-col gap-2 py-2 dark:text-black'>
                             {productCategory.map((categoryName, index) => (
                                 <div key={index} className='flex items-center gap-3'>
                                     <input
@@ -487,6 +487,7 @@ const CategoryProduct = () => {
                                         value={categoryName?.value}
                                         id={categoryName?.value}
                                         onChange={handleSelectCategory}
+                                        className=''
                                     />
                                     <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
                                 </div>
@@ -562,7 +563,7 @@ const CategoryProduct = () => {
 
 
 
-<div className='lg:hidden flex flex-col '>
+<div className='lg:hidden flex flex-col  '>
     <div className=''>
         <div className="flex justify-end gap-1">
             <div className='w-1/2 mr-0.5'>
@@ -585,7 +586,7 @@ const CategoryProduct = () => {
                     </form>
                 )}
             </div>
-            <div className='w-1/2 ml-0.5'>
+            <div className='w-1/2 ml-0.5 '>
                 <h3
                     className='text-base uppercase font-medium text-slate-500 border-b  border-slate-300 cursor-pointer rounded-full text-center  bg-white py-1 hover:text-white hover:bg-slate-400 shadow-lg'
                     onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
@@ -612,9 +613,9 @@ const CategoryProduct = () => {
             </div>
         </div>
     </div>
-    <div className='px-4'>
+    <div className='px-4  ' >
         <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
-        <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)]'>
+        <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none  '>
             {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
         </div>
     </div>

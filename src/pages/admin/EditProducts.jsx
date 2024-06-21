@@ -102,7 +102,7 @@ const EditProducts = () => {
   return (
     <div className="p-2">
       <div className="fixed w-full h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
-        <div className="bg-white py-6 px-3 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
+        <div className="bg-white dark:bg-gray-900 py-6 px-3 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
           <div className="flex justify-between items-center">
             <h2 className="font-bold text-xl ml-4">Edit Product</h2>
             <div
@@ -120,14 +120,14 @@ const EditProducts = () => {
               {...register("productName")}
               type="text"
               placeholder="Product Name"
-              className="p-2 bg-slate-100 border rounded"
+              className="p-2 bg-slate-100 border rounded dark:bg-slate-400 dark:text-black  dark:placeholder-gray-950"
             />
             {errors.productName && <p className="text-red-600">{errors.productName.message}</p>}
             <input
               {...register("brandName")}
               type="text"
               placeholder="Brand Name"
-              className="p-2 bg-slate-100 border rounded"
+              className="p-2 bg-slate-100 border rounded dark:bg-slate-400 dark:text-black dark:placeholder-gray-950"
             />
             {errors.brandName && <p className="text-red-600">{errors.brandName.message}</p>}
             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full"> 
@@ -136,7 +136,7 @@ const EditProducts = () => {
               {...register("sellingPrice")}
               type="text"
               placeholder="selling price"
-              className="p-2 bg-slate-100 border rounded w-full"
+              className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
             />
             {errors.sellingPrice && <p className="text-red-600">{errors.sellingPrice.message}</p>}
             </div>
@@ -146,7 +146,7 @@ const EditProducts = () => {
               {...register("price")}
               type="text"
               placeholder="Price"
-              className="p-2 bg-slate-100 border rounded w-full"
+              className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
             />
             {errors.price && <p className="text-red-600">{errors.price.message}</p>}
             </div>
@@ -158,12 +158,12 @@ const EditProducts = () => {
             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
               <div className="flex-1 w-full lg:w-1/2">
                 <select
-                  className="p-2 bg-slate-100 border rounded w-full"
+                  className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
                   {...register("category")}
                 >
-                  <option value="">Select Category</option>
+                  <option  className="dark:text-gray-950" value="">Select Category</option>
                   {productCategory.map((cat) => (
-                    <option key={cat.value} value={cat.value}>
+                    <option  className="dark:text-gray-950" key={cat.value} value={cat.value}>
                       {cat.label}
                     </option>
                   ))}
@@ -172,12 +172,12 @@ const EditProducts = () => {
               </div>
               <div className="flex-1 w-full lg:w-1/2">
                 <select
-                  className="p-2 bg-slate-100 border rounded w-full"
+                  className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
                   {...register("adminEmail")}
                 >
-                  <option value="">Select Your Email</option>
+                  <option  className="dark:text-gray-950" value="">Select Your Email</option>
                   {allAdmins.map((admin) => (
-                    <option key={admin.email} value={admin.email}>
+                    <option  className="dark:text-gray-950" key={admin.email} value={admin.email}>
                       {admin.email}
                     </option>
                   ))}
@@ -186,12 +186,12 @@ const EditProducts = () => {
               </div>
             </div>
             <label htmlFor="productImage">
-              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer">
+              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
                 <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
                   <span className="text-4xl">
-                    <IoCloudUploadSharp />
+                    <IoCloudUploadSharp className="dark:text-gray-950" />
                   </span>
-                  <p className="text-sm">Upload Product Image</p>
+                  <p className="text-sm  dark:text-gray-950 ">Upload Product Image</p>
                   <input
                     id="productImage"
                     {...register("image")}
@@ -208,7 +208,7 @@ const EditProducts = () => {
             <textarea
               {...register("description")}
               placeholder="Enter product description"
-              className="p-2 bg-slate-100 border rounded resize-none h-28"
+              className="p-2 bg-slate-100 border rounded resize-none h-28  dark:bg-slate-400 dark:placeholder-gray-950 dark:text-black"
             />
             {errors.description && <p className="text-red-600">{errors.description.message}</p>}
             <input
@@ -217,7 +217,7 @@ const EditProducts = () => {
             />
              <button
              onClick={()=>navigate('/admin/my-upload')}
-              className="bg-slate-200 text-black mb-10 px-3 py-2 rounded hover:bg-slate-700"
+              className="bg-slate-200 text-black mb-10 px-3 py-2 rounded hover:bg-slate-700 dark:bg-slate-300 dark:hover:bg-slate-400"
              
             >Cancel</button>
           </form>

@@ -226,7 +226,7 @@ const Cart = () => {
                     <div className='absolute right-0 text-red-600 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer'>
                       <MdDelete onClick={() => deleteCart(product?.productDetails?._id)} />
                     </div>
-                    <h2 className='text-lg lg:text-xl text-ellipsis line-clamp-1'>{product?.productDetails?.productName}</h2>
+                    <h2 className='text-lg lg:text-xl text-ellipsis line-clamp-1 dark:text-gray-900'>{product?.productDetails?.productName}</h2>
                     <p className='capitalized text-slate-500'>{product?.productDetails?.category}</p>
                     <div className='flex items-center justify-between'>
                       <p className='text-red-600 font-medium text-lg'>{displayINRCurrency(product?.productDetails?.price)}</p>
@@ -236,7 +236,7 @@ const Cart = () => {
                       <button
                         onClick={() => fetchQtyOperator(product?.productDetails?._id, 'minus')}
                         className='border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded'>-</button>
-                      <span>{product.quantity}</span>
+                      <span className='dark:text-gray-900'>{product.quantity}</span>
                       <button
                         onClick={() => fetchQtyOperator(product?.productDetails?._id, 'plus')}
                         className='border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded'>+</button>
@@ -272,7 +272,7 @@ const Cart = () => {
                 <button className='bg-blue-600 p-2 mt-4 text-white w-full hover:bg-blue-700' onClick={() => handlePayment()}>Payment</button>
               </div>
               <Link to={'/see-all-orders'}> 
-              <h1 className='pt-4 text-right  text-lg font-medium  rounded m  px-2 underline  text-slate-500  hover:text-slate-700'>Order Details</h1>
+              <h1 className='pt-4 lg:text-right  text-lg font-medium  rounded m  px-2 underline dark:text-slate-200 dark:hover:text-slate-400  text-slate-500  hover:text-slate-700 '>Order Details</h1>
               {/**Order details replace to navbar or align proper here  */}
               </Link>
               </>

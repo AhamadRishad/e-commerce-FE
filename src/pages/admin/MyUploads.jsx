@@ -55,11 +55,11 @@ const MyUploads = () => {
 
   return (
     <div className='py-3 px-4'>
-      <div className='bg-white py-2 px-4 flex justify-between items-center rounded-full'>
+      <div className='bg-white dark:bg-gray-500 py-2 px-4 flex justify-between items-center rounded-full'>
         <h2 className='font-bold text-lg'>All Products</h2>
         <Link to={'/admin/upload-cart'}>
           <button
-            className='border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-all py-1 px-3 rounded-full'
+            className='border-2 border-red-600 dark:bg-red-600 dark:text-white dark:hover:bg-red-700 text-red-600 hover:bg-red-600 hover:text-white transition-all py-1 px-3 rounded-full'
           >
             Upload Product
           </button>
@@ -71,10 +71,10 @@ const MyUploads = () => {
           <table className="min-w-full divide-y divide-gray-200 ">
             <thead className="bg-red-600">
               <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider ">
                   #
                 </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider ">
                   Product Name
                 </th>
                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
@@ -105,26 +105,26 @@ const MyUploads = () => {
             <tbody className="bg-white divide-y divide-gray-200">
               {products.map((product, index) => (
                 <tr key={product._id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:bg-gray-400 dark:text-gray-700 ">
                     {index + 1}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
-                    {product.productName}
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium dark:bg-gray-400">
+                    {truncateText(product.productName,25)}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium dark:bg-gray-400">
                     {product.brandName}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium dark:bg-gray-400">
                     {product.price}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium dark:bg-gray-400">
                     {product.category}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900  ">
+                  <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 dark:bg-gray-400 ">
                     {/* {product.description} */}
                     {truncateText(product.description, 25)}
                   </td>
-                  <td className="px-4 py-1 whitespace-nowrap text-sm text-gray-900 font-bold ">
+                  <td className="px-4 py-1 whitespace-nowrap text-sm text-gray-900  dark:bg-gray-400 ">
                   {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold"> */}
 
                     {product.image ? (
@@ -133,10 +133,10 @@ const MyUploads = () => {
                       'No image'
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold dark:bg-gray-400">
                     {product.STATUS}
                   </td>
-                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full">
+                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full dark:bg-gray-400">
                     <div className='flex gap-2 items-center pt-'>
                 <Link to={`/admin/delete-product/${product._id}`} state={{product}} >  <MdDelete  className='text-red-600 h-6 w-6 hover:text-red-700 cursor-pointer' /> </Link> 
                   {/* <Link to={'/admin/edit-cart'}>   <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' /></Link>  */}
