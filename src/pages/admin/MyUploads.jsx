@@ -103,7 +103,7 @@ const MyUploads = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product, index) => (
+              { products.map((product, index) => (
                 <tr key={product._id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:bg-gray-400 dark:text-gray-700 ">
                     {index + 1}

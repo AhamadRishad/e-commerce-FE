@@ -6,6 +6,7 @@ import displayINRCurrency from "../../helpers/displayCurrency";
 import CategoryWiseProductDisplay from "../../components/CategoryWiseProductDisplay";
 import AddToCartButton from "../../helpers/AddToCartButton";
 import BuyButton from "../../helpers/BuyButton";
+import DisplayAllReview from "../../components/DisplayAllReview";
 // import BuyButton from "../../helpers/BuyButton";
 
 const CardProductDetails = () => {
@@ -17,6 +18,7 @@ const CardProductDetails = () => {
     image: "",
     category: "",
     description: "",
+    _id:""
   });
 
   const params = useParams();
@@ -168,6 +170,7 @@ const CardProductDetails = () => {
           <CategoryWiseProductDisplay category={data.category} heading={"Recommended Product"}/> 
         )
       }
+       <DisplayAllReview productId={productId}/>
     </div>
   );
 };

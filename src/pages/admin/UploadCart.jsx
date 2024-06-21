@@ -171,7 +171,7 @@ const UploadCart = () => {
                   <option
                    className="dark:text-gray-950"
                   value="">Select Category</option>
-                  {productCategory.map((product, index) => (
+                  { productCategory.map((product, index) => (
                     <option
                     className="dark:text-gray-950"
                      key={index} value={product.value}>
