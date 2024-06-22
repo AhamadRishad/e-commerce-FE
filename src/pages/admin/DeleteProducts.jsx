@@ -36,8 +36,9 @@ const DeleteProducts = () => {
   };
 
   return (
+   
     <div className="fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-md p-6 relative">
+      <div className="w-full max-w-md bg-white dark:bg-gray-900 shadow-lg rounded-md p-6 relative">
         <div className="absolute top-2 right-2 cursor-pointer hover:text-red-700">
           <Link to={"/admin/my-upload"}>
             <IoClose className="h-7 w-6" />
@@ -69,6 +70,7 @@ const DeleteProducts = () => {
           </Link>
         </div>
       </div>
+    
     </div>
   );
 };

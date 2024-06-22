@@ -65,7 +65,7 @@ const Header = () => {
     Cookies.remove("token");
     setIsLoggedIn(false);
     
-    alert('succs')
+   
     navigate("/login", { replace: true });
   };
 

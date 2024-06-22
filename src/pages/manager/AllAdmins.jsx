@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { ImBlocked } from "react-icons/im";
 import Cookies from "js-cookie";
 
 const truncateText = (text, maxLength = 10) => {
@@ -106,12 +104,12 @@ const AllAdmins = () => {
                   Created At
                 </th>
                 <th>
-                  <div
+                  {/* <div
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
                   >
                     Action
-                  </div>
+                  </div> */}
                 </th>
               </tr>
             </thead>
@@ -120,31 +118,31 @@ const AllAdmins = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {products.map((product, index) => (
                   <tr key={product._id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500  dark:bg-gray-500 dark:text-black  ">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-md text-gray-900 font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-md text-gray-900 font-medium dark:bg-gray-400">
                       {product.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium dark:bg-gray-400">
                       {product.email}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium dark:bg-gray-400">
                       {product?.role}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 font-medium ">
+                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 font-medium dark:bg-gray-400">
                       {/* {product.description} */}
                       91+ {product.mobile}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 ">
+                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 dark:bg-gray-400">
                       {/* {product.hashPassword} */}
                       {truncateText(product.hashPassword)}
                     </td>
 
-                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 ">
+                    <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-900 dark:bg-gray-400">
                       {product.createdAt}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full">
+                    {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-bold flex justify-center items-center h-full dark:bg-gray-400">
                       <div className="flex gap-2 items-center pt-">
                         <Link
                           to={`/admin/delete-product/${product._id}`}
@@ -153,9 +151,10 @@ const AllAdmins = () => {
                           {" "}
                           <ImBlocked className="text-red-600 h-6 w-6 hover:text-red-700 cursor-pointer" />{" "}
                         </Link>
-                        {/* <Link to={'/admin/edit-cart'}>   <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' /></Link>  */}
+                        <Link to={'/admin/edit-cart'}>   <FaEdit className='text-blue-600 h-5 w-5 hover:text-blue-700 cursor-pointer' /></Link> 
+                     
                       </div>
-                    </td>
+                    </td> */}
                   </tr>
                 ))}
               </tbody>

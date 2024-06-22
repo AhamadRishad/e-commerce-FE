@@ -26,6 +26,7 @@ const CategoryList = () => {
       );
       const dataResponse = res.data;
       setCategoryProduct(dataResponse.data);
+      console.log(dataResponse)
     } catch (error) {
       console.error("Error fetching category products:", error);
     } finally {
