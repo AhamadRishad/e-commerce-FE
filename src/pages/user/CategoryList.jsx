@@ -21,7 +21,8 @@ const CategoryList = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/v1/user/all-single-category",
+        // "http://localhost:3000/api/v1/user/all-single-category",
+        `${import.meta.env.VITE_API_URL}/user/all-single-category`,
         { withCredentials: true }
       );
       const dataResponse = res.data;

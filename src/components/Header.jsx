@@ -30,7 +30,7 @@ const Header = () => {
     try {
       const token = Cookies.get('token')
       const res = await axios.get(
-        "http://localhost:3000/api/v1/user/check-manager",
+        `${import.meta.env.VITE_API_URL}/user/check-manager`,
       {
         headers: {
           'Authorization': `Bearer ${token}`

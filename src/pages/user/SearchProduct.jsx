@@ -15,7 +15,8 @@ const SearchProduct = () => {
         setLoading(true)
         try {
             const res = await axios.get(
-                "http://localhost:3000/api/v1/user/search"+query.search,
+                // "http://localhost:3000/api/v1/user/search"+query.search,
+                `${import.meta.env.VITE_API_URL}/user/search${query.search}`,
                 {
                     withCredentials:true
                 }

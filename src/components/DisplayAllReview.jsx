@@ -10,7 +10,7 @@ const DisplayAllReview = ({ productId }) => {
     try {
       console.log("productId  ::", productId);
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/display-review",
+        `${import.meta.env.VITE_API_URL}/user/display-review`,
         {
           productId,
         },

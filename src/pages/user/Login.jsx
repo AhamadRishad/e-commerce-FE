@@ -16,7 +16,10 @@ const Login = () => {
   const navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/user/signin",data, {Credentials: true});
+      const res = await axios.post(
+        // "http://localhost:3000/api/v1/user/signin",
+        `${import.meta.env.VITE_API_URL}/user/signin`,
+        data, {Credentials: true});
       
       console.log(data);
       console.log(res.data);

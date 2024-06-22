@@ -9,7 +9,8 @@ const useCartStore = create((set) => ({
     const token = Cookies.get('token');
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/v1/user/quantity-count",
+        // "http://localhost:3000/api/v1/user/quantity-count",
+        `${import.meta.env.VITE_API_URL}/user/quantity-count`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

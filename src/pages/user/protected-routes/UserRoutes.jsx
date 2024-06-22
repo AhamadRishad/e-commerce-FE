@@ -21,7 +21,8 @@ const UserRoutes = ({ children }) => {
       try {
         const token = Cookies.get('token');
         console.log("hitted to api token")
-        const res = await axios.get("http://localhost:3000/api/v1/user/check-user", 
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user/check-user`,
           {
            headers:{
             Authorization: `token ${token}`,          

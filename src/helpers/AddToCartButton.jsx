@@ -14,7 +14,7 @@ const AddToCartButton = ({ productId,className }) => {
     try {
       const token = Cookies.get('token')
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/add-to-cart",
+        `${import.meta.env.VITE_API_URL}/user/add-to-cart`,
         { productId },
         {
           headers:{

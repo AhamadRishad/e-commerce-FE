@@ -392,7 +392,8 @@ const CategoryProduct = () => {
         setLoading(true);
         try {
             const res = await axios.post(
-                "http://localhost:3000/api/v1/user/filter-product",
+                // "http://localhost:3000/api/v1/user/filter-product",
+                `${import.meta.env.VITE_API_URL}/user/filter-product`,
                 { category: filterCategoryList },
                 { withCredentials: true }
             );
@@ -412,7 +413,10 @@ const CategoryProduct = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const res = await axios.get("http://localhost:3000/api/v1/admin/categories");
+                const res = await axios.get(
+                    // "http://localhost:3000/api/v1/admin/categories"
+                    `${import.meta.env.VITE_API_URL}/admin/categories`
+                );
                 const categoryData = res.data;
                 setProductCategory(categoryData);
             } catch (error) {

@@ -1,11 +1,7 @@
-
-
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import displayINRCurrency from "../helpers/displayCurrency";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-// import addToCart from "../helpers/addToCart";
 import AddToCartButton from "../helpers/AddToCartButton";
 import scrollTop from "../helpers/scrollTop";
 
@@ -21,7 +17,7 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/category-wise-products",
+        `${import.meta.env.VITE_API_URL}/user/category-wise-products`,
         {
           category,
         },

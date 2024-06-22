@@ -119,7 +119,10 @@ const Cart = () => {
     };
   
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/payment/order", orderData);
+      const res = await axios.post(
+        // "http://localhost:3000/api/v1/payment/order",
+        `${import.meta.env.VITE_API_URL}/payment/order`,
+         orderData);
       const order = res.data.data;
       const options = {
         key: import.meta.env.VITE_SOME_KEY, // Enter the Key ID generated from the Dashboard
@@ -132,7 +135,10 @@ const Cart = () => {
           try {
             const token = Cookies?.get('token');
             console.log('token :',token)
-            const verifyApi = await axios.post('http://localhost:3000/api/v1/payment/payment-verify', {
+            const verifyApi = await axios.post(
+              // 'http://localhost:3000/api/v1/payment/payment-verify',
+              `${import.meta.env.VITE_API_URL}/payment/payment-verify`,
+               {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,

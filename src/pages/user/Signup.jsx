@@ -28,7 +28,10 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-       const res = await axios.post("http://localhost:3000/api/v1/user/signup",data);
+       const res = await axios.post(
+        // "http://localhost:3000/api/v1/user/signup",
+        `${import.meta.env.VITE_API_URL}/user/signup`,
+        data);
       console.log(res.data);
       Cookies.set('token', res.data.token)
       toast.success('Signed success');

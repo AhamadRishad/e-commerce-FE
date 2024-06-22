@@ -51,7 +51,8 @@ const PurchaseDetails = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/v1/payment/order-details",
+        // "http://localhost:3000/api/v1/payment/order-details",
+        `${import.meta.env.VITE_API_URL}/payment/order-details`,
         {
           headers: {
             'Authorization': `Bearer ${token}`
