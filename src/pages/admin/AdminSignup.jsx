@@ -28,7 +28,10 @@ const AdminSignup = () => {
 
   const onSubmit = async (data) => {
     try {
-       const res = await axios.post("http://localhost:3000/api/v1/admin/signup",data);
+       const res = await axios.post(
+        // "http://localhost:3000/api/v1/admin/signup",
+        `${import.meta.env.VITE_API_URL}/admin/login`,
+        data);
       console.log(res.data);
       // Cookies.set('token', res.data.token)
       toast.success('Login successfull');

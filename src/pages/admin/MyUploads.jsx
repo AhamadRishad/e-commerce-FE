@@ -26,7 +26,10 @@ const MyUploads = () => {
 
     const fetchProducts = async () => {
       try {
-        const response = await axios.post('http://localhost:3000/api/v1/admin/adminProduct', {}, {
+        const response = await axios.post(
+          // 'http://localhost:3000/api/v1/admin/adminProduct',
+           `${import.meta.env.VITE_API_URL}/admin/adminProduct`,
+           {}, {
           headers: {
             Authorization: `Bearer ${AdminToken}`
           },

@@ -38,7 +38,10 @@ const EditProducts = () => {
   useEffect(() => {
     const fetchAdmins = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/manager/get-admins");
+        const res = await axios.get(
+          // "http://localhost:3000/api/v1/manager/get-admins"
+          `${import.meta.env.VITE_API_URL}/manager/get-admins`
+        );
         setAllAdmins(res.data);
       } catch (error) {
         console.error(error);
@@ -47,7 +50,10 @@ const EditProducts = () => {
 
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/admin/categories");
+        const res = await axios.get(
+          // "http://localhost:3000/api/v1/admin/categories"
+           `${import.meta.env.VITE_API_URL}/admin/categories`
+        );
         setProductCategory(res.data);
       } catch (error) {
         console.error(error);

@@ -20,7 +20,8 @@ const ProtectedRoute = ({children}) => {
       try {
         const AdminToken = Cookies.get('AdminToken')
         const res = await axios.get(
-          'http://localhost:3000/api/v1/admin/check-admin', 
+          // 'http://localhost:3000/api/v1/admin/check-admin', 
+          `${import.meta.env.VITE_API_URL}/admin/check-admin`,
           {
             headers: {
               'Authorization': `Bearer ${AdminToken}`

@@ -130,7 +130,8 @@ const AllOrder = () => {
     try {
       const token = Cookies.get('token')
       const res = await axios.get(
-        'http://localhost:3000/api/v1/manager/all-orders',
+        // 'http://localhost:3000/api/v1/manager/all-orders',
+        `${import.meta.env.VITE_API_URL}/manager/all-orders`,
         {
           headers: {
             'Authorization': `Bearer ${token}`

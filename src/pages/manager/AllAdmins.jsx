@@ -19,7 +19,8 @@ const AllAdmins = () => {
       const token = Cookies.get('token')
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/manager/all-admins",
+          // "http://localhost:3000/api/v1/manager/all-admins",
+          `${import.meta.env.VITE_API_URL}/manager/all-admins`,
           {
             headers: {
               'Authorization': `Bearer ${token}`

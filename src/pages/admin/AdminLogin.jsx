@@ -19,7 +19,8 @@ const AdminLogin = () => {
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/admin/login",
+        // "http://localhost:3000/api/v1/admin/login",
+        `${import.meta.env.VITE_API_URL}/admin/login`,
         data);
       console.log(res.message);
       Cookies.set('AdminToken', res.data.AdminToken)

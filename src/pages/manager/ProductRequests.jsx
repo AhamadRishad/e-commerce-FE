@@ -22,7 +22,8 @@ const ProductRequests = () => {
       try {
         const token = Cookies.get('token')
         const res = await axios.post(
-          "http://localhost:3000/api/v1/manager/active-product",
+          // "http://localhost:3000/api/v1/manager/active-product",
+          `${import.meta.env.VITE_API_URL}/manager/active-product`,
           {
             productID: productID,
             status: status,
@@ -64,7 +65,8 @@ const ProductRequests = () => {
     try {
       const token = Cookies.get('token')
       const response = await axios.get(
-        "http://localhost:3000/api/v1/manager/verify-product",
+        // "http://localhost:3000/api/v1/manager/verify-product",
+        `${import.meta.env.VITE_API_URL}/manager/verify-product`,
         {
           headers: {
             'Authorization': `Bearer ${token}`

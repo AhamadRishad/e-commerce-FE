@@ -34,7 +34,10 @@ const UploadCart = () => {
   useEffect(() => {
     const admins = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/manager/get-admins");
+        const res = await axios.get(
+          // "http://localhost:3000/api/v1/manager/get-admins"
+          `${import.meta.env.VITE_API_URL}/manager/get-admins`
+        );
         const data = res.data;
         setAllAdmins(data);
       } catch (error) {
@@ -47,7 +50,10 @@ const UploadCart = () => {
   useEffect(() => {
     const categories = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/v1/admin/categories");
+        const res = await axios.get(
+          // "http://localhost:3000/api/v1/admin/categories"
+           `${import.meta.env.VITE_API_URL}/admin/categories`
+        );
         const categoryData = res.data;
         setProductCategory(categoryData);
       } catch (error) {
@@ -79,7 +85,8 @@ const UploadCart = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/admin/add-cart",
+        // "http://localhost:3000/api/v1/admin/add-cart",
+           `${import.meta.env.VITE_API_URL}/admin/add-cart`,
         requestBody,
         {
           withCredentials: true,
