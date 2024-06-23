@@ -131,7 +131,7 @@ const Header = () => {
                       to={"/admin/my-upload"}
                       className="whitespace-nowrap  md:block dark:hover:bg-slate-200 dark:hover:text-gray-900 dark:bg-gray-900 hover:bg-slate-100 p-2 rounded"
                     >
-                      Admin Panel
+                      Seller panel
                     </Link>
                   )}
                 </nav>

@@ -12,48 +12,26 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const AdminLogin = () => {
-  // var token=null;
+ 
   const navigate = useNavigate()
 
-  // useEffect(()=>{
-  //   const AdminToken = Cookies.get("AdminToken")
-  //   if(AdminToken){
-  //       navigate("/admin/my-upload")
-  //     return;
-          
-  //   }
-    
-      
-  // },[])
+
   const onSubmit = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3000/api/v1/admin/login",data);
+      const res = await axios.post(
+        "http://localhost:3000/api/v1/admin/login",
+        data);
+      console.log(res.message);
       Cookies.set('AdminToken', res.data.AdminToken)
       console.log(data);
       console.log(res.data);
-  //     if (token) {
-  //       res.setHeader('Set-Cookie', `access_token=${token}; Secure; HttpOnly;`);
-  //  console.log({token})
-  //     } else {
-  //       console.log({token})
-  //     }
-    //   res.Cookies.get(token);
-    // console.log(token);
-    // const token = Cookies.get("token");
-    //     console.log(token);
-    //     if(token === undefined) {
-    //         navigate("/admin/signup",{replace:true})
-    //         toast.success('Login failed');
-    //     }else{
-    //       navigate("/admin/my-upload")
-    //       toast.success('Login successfull');
-    //     }
     
     toast.success('Login successfully');
       navigate("/admin/my-upload")
     } catch (error) {
+      toast.error(res.message)
       console.log(error);
-      toast.error('login Failed')
+      // toast.error('login Failed')
     }
   };
 

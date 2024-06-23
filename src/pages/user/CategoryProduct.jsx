@@ -461,176 +461,283 @@ const CategoryProduct = () => {
     useEffect(() => {}, [sortBy]);
 
     return (
-        <div className='container mx-auto p-4 '>
-            {/*** desktop version */}
-            <div className='hidden lg:grid grid-cols-[200px,1fr]'>
-                {/*** left side */}
-                <div className='bg-white p-2 min-h-[calc(100vh-120px)] overflow-y-scroll scrollbar-none dark:bg-gray-500'>
-                    <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 dark:text-gray-900'>Sort by</h3>
-                        <form className='text-sm flex flex-col gap-2 py-2'>
-                            <div className='flex items-center gap-3 dark:text-black'>
-                                <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
-                                <label>Price - Low to High</label>
-                            </div>
-                            <div className='flex items-center gap-3 dark:text-black'>
-                                <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
-                                <label>Price - High to Low</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div>
-                        <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 dark:text-gray-900'>Category</h3>
-                        <form className='text-sm flex flex-col gap-2 py-2 dark:text-black'>
-                            {productCategory.map((categoryName, index) => (
-                                <div key={index} className='flex items-center gap-3'>
-                                    <input
-                                        type='checkbox'
-                                        name='category'
-                                        checked={selectCategory[categoryName?.value] || false}
-                                        value={categoryName?.value}
-                                        id={categoryName?.value}
-                                        onChange={handleSelectCategory}
-                                        className=''
-                                    />
-                                    <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
-                                </div>
-                            ))}
-                        </form>
-                    </div>
+
+        <div className='container mx-auto p-4'>
+        {/*** Desktop version */}
+        <div className='hidden lg:grid grid-cols-[200px,1fr]'>
+          {/*** Left side */}
+          <div className='bg-white dark:bg-gray-800 p-2 min-h-[calc(100vh-120px)] overflow-y-scroll scrollbar-none'>
+            <div>
+              <h3 className='text-base uppercase font-medium text-slate-500 dark:text-gray-300 border-b pb-1 border-slate-300 dark:border-gray-600'>Sort by</h3>
+              <form className='text-sm flex flex-col gap-2 py-2'>
+                <div className='flex items-center gap-3 dark:text-gray-300'>
+                  <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
+                  <label>Price - Low to High</label>
                 </div>
-                <div className='px-4'>
-                    <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
-                    <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none'>
-                        {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
-                    </div>
+                <div className='flex items-center gap-3 dark:text-gray-300'>
+                  <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
+                  <label>Price - High to Low</label>
                 </div>
+              </form>
             </div>
+            <div>
+              <h3 className='text-base uppercase font-medium text-slate-500 dark:text-gray-300 border-b pb-1 border-slate-300 dark:border-gray-600'>Category</h3>
+              <form className='text-sm flex flex-col gap-2 py-2 dark:text-gray-300'>
+                {productCategory.map((categoryName, index) => (
+                  <div key={index} className='flex items-center gap-3'>
+                    <input
+                      type='checkbox'
+                      name='category'
+                      checked={selectCategory[categoryName?.value] || false}
+                      value={categoryName?.value}
+                      id={categoryName?.value}
+                      onChange={handleSelectCategory}
+                    />
+                    <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
+                  </div>
+                ))}
+              </form>
+            </div>
+          </div>
+          <div className='px-4'>
+            <p className='font-medium text-slate-800 dark:text-gray-200 text-lg my-2'>Search Results: {data.length}</p>
+            <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none'>
+              {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
+            </div>
+          </div>
+        </div>
+      
+        {/*** Mobile version */}
+        <div className='lg:hidden flex flex-col'>
+          <div className='flex justify-between gap-1 mb-4'>
+            <div className='w-1/2'>
+              <h3
+                className='text-base uppercase font-medium text-slate-500 dark:text-gray-300 border-b border-slate-300 dark:border-gray-600 cursor-pointer rounded-full text-center bg-white dark:bg-gray-800 py-1 hover:bg-slate-400 dark:hover:bg-gray-700 shadow-lg'
+                onClick={() => setSortByDropdownOpen(!sortByDropdownOpen)}
+              >
+                Sort by
+              </h3>
+              {sortByDropdownOpen && (
+                <form className='text-sm flex flex-col gap-2 py-2 dark:text-gray-300'>
+                  <div className='flex items-center gap-3'>
+                    <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
+                    <label>Price - Low to High</label>
+                  </div>
+                  <div className='flex items-center gap-3'>
+                    <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
+                    <label>Price - High to Low</label>
+                  </div>
+                </form>
+              )}
+            </div>
+            <div className='w-1/2'>
+              <h3
+                className='text-base uppercase font-medium text-slate-500 dark:text-gray-300 border-b border-slate-300 dark:border-gray-600 cursor-pointer rounded-full text-center bg-white dark:bg-gray-800 py-1 hover:bg-slate-400 dark:hover:bg-gray-700 shadow-lg'
+                onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
+              >
+                Category
+              </h3>
+              {categoryDropdownOpen && (
+                <form className='text-sm flex flex-col gap-2 py-2 dark:text-gray-300'>
+                  {productCategory.map((categoryName, index) => (
+                    <div key={index} className='flex items-center gap-3'>
+                      <input
+                        type='checkbox'
+                        name='category'
+                        checked={selectCategory[categoryName?.value] || false}
+                        value={categoryName?.value}
+                        id={categoryName?.value}
+                        onChange={handleSelectCategory}
+                      />
+                      <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
+                    </div>
+                  ))}
+                </form>
+              )}
+            </div>
+          </div>
+          <div className='px-4'>
+            <p className='font-medium text-slate-800 dark:text-gray-200 text-lg my-2'>Search Results: {data.length}</p>
+            <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none'>
+              {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
+
+//         <div className='container mx-auto p-4 '>
+//             {/*** desktop version */}
+//             <div className='hidden lg:grid grid-cols-[200px,1fr]'>
+//                 {/*** left side */}
+//                 <div className='bg-white p-2 min-h-[calc(100vh-120px)] overflow-y-scroll scrollbar-none dark:bg-gray-800'>
+//                     <div>
+//                         <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 dark:text-gray-900'>Sort by</h3>
+//                         <form className='text-sm flex flex-col gap-2 py-2 '>
+//                             <div className='flex items-center gap-3  '>
+//                                 <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
+//                                 <label>Price - Low to High</label>
+//                             </div>
+//                             <div className='flex items-center gap-3  dark:text-gray-300'>
+//                                 <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
+//                                 <label>Price - High to Low</label>
+//                             </div>
+//                         </form>
+//                     </div>
+//                     <div>
+//                         <h3 className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 dark:text-gray-900'>Category</h3>
+//                         <form className='text-sm flex flex-col gap-2 py-2 dark:gray-300'>
+//                             {productCategory.map((categoryName, index) => (
+//                                 <div key={index} className='flex items-center gap-3'>
+//                                     <input
+//                                         type='checkbox'
+//                                         name='category'
+//                                         checked={selectCategory[categoryName?.value] || false}
+//                                         value={categoryName?.value}
+//                                         id={categoryName?.value}
+//                                         onChange={handleSelectCategory}
+//                                         className=''
+//                                     />
+//                                     <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
+//                                 </div>
+//                             ))}
+//                         </form>
+//                     </div>
+//                 </div>
+//                 <div className='px-4'>
+//                     <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
+//                     <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none'>
+//                         {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
+//                     </div>
+//                 </div>
+//             </div>
             
-            {/*** mobile version */}
-            {/* <div className='lg:hidden'>
+//             {/*** mobile version */}
+//             {/* <div className='lg:hidden'>
               
-                <div className='bg-white p-2'>
-                    <div>
-                        <h3
-                            className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 cursor-pointer'
-                            onClick={() => setSortByDropdownOpen(!sortByDropdownOpen)}
-                        >
-                            Sort by
-                        </h3>
-                        {sortByDropdownOpen && (
-                            <form className='text-sm flex flex-col gap-2 py-2'>
-                                <div className='flex items-center gap-3'>
-                                    <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
-                                    <label>Price - Low to High</label>
-                                </div>
-                                <div className='flex items-center gap-3'>
-                                    <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
-                                    <label>Price - High to Low</label>
-                                </div>
-                            </form>
-                        )}
-                    </div>
-                    <div>
-                        <h3
-                            className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 cursor-pointer'
-                            onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
-                        >
-                            Category
-                        </h3>
-                        {categoryDropdownOpen && (
-                            <form className='text-sm flex flex-col gap-2 py-2'>
-                                {productCategory.map((categoryName, index) => (
-                                    <div key={index} className='flex items-center gap-3'>
-                                        <input
-                                            type='checkbox'
-                                            name='category'
-                                            checked={selectCategory[categoryName?.value] || false}
-                                            value={categoryName?.value}
-                                            id={categoryName?.value}
-                                            onChange={handleSelectCategory}
-                                        />
-                                        <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
-                                    </div>
-                                ))}
-                            </form>
-                        )}
-                    </div>
-                </div>
-                <div className='px-4'>
-                    <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
-                    <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)]'>
-                        {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
-                    </div>
-                </div>
-            </div> */}
+//                 <div className='bg-white p-2'>
+//                     <div>
+//                         <h3
+//                             className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 cursor-pointer'
+//                             onClick={() => setSortByDropdownOpen(!sortByDropdownOpen)}
+//                         >
+//                             Sort by
+//                         </h3>
+//                         {sortByDropdownOpen && (
+//                             <form className='text-sm flex flex-col gap-2 py-2'>
+//                                 <div className='flex items-center gap-3'>
+//                                     <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
+//                                     <label>Price - Low to High</label>
+//                                 </div>
+//                                 <div className='flex items-center gap-3'>
+//                                     <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
+//                                     <label>Price - High to Low</label>
+//                                 </div>
+//                             </form>
+//                         )}
+//                     </div>
+//                     <div>
+//                         <h3
+//                             className='text-base uppercase font-medium text-slate-500 border-b pb-1 border-slate-300 cursor-pointer'
+//                             onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
+//                         >
+//                             Category
+//                         </h3>
+//                         {categoryDropdownOpen && (
+//                             <form className='text-sm flex flex-col gap-2 py-2'>
+//                                 {productCategory.map((categoryName, index) => (
+//                                     <div key={index} className='flex items-center gap-3'>
+//                                         <input
+//                                             type='checkbox'
+//                                             name='category'
+//                                             checked={selectCategory[categoryName?.value] || false}
+//                                             value={categoryName?.value}
+//                                             id={categoryName?.value}
+//                                             onChange={handleSelectCategory}
+//                                         />
+//                                         <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
+//                                     </div>
+//                                 ))}
+//                             </form>
+//                         )}
+//                     </div>
+//                 </div>
+//                 <div className='px-4'>
+//                     <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
+//                     <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)]'>
+//                         {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
+//                     </div>
+//                 </div>
+//             </div> */}
 
 
 
-<div className='lg:hidden flex flex-col  '>
-    <div className=''>
-        <div className="flex justify-end gap-1">
-            <div className='w-1/2 mr-0.5'>
-                <h3
-                    className='text-base uppercase font-medium text-slate-500 border-b  border-slate-300 cursor-pointer rounded-full text-center bg-white py-1 hover:text-white hover:bg-slate-400 shadow-lg'
-                    onClick={() => setSortByDropdownOpen(!sortByDropdownOpen)}
-                >
-                    Sort by
-                </h3>
-                {sortByDropdownOpen && (
-                    <form className='text-sm flex flex-col gap-2 py-2'>
-                        <div className='flex items-center gap-3  '>
-                            <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
-                            <label>Price - Low to High</label>
-                        </div>
-                        <div className='flex items-center gap-3'>
-                            <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
-                            <label className=''>Price - High to Low</label>
-                        </div>
-                    </form>
-                )}
-            </div>
-            <div className='w-1/2 ml-0.5 '>
-                <h3
-                    className='text-base uppercase font-medium text-slate-500 border-b  border-slate-300 cursor-pointer rounded-full text-center  bg-white py-1 hover:text-white hover:bg-slate-400 shadow-lg'
-                    onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
-                >
-                    Category
-                </h3>
-                {categoryDropdownOpen && (
-                    <form className='text-sm flex flex-col gap-2 py-2'>
-                        {productCategory.map((categoryName, index) => (
-                            <div key={index} className='flex items-center gap-3'>
-                                <input
-                                    type='checkbox'
-                                    name='category'
-                                    checked={selectCategory[categoryName?.value] || false}
-                                    value={categoryName?.value}
-                                    id={categoryName?.value}
-                                    onChange={handleSelectCategory}
-                                />
-                                <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
-                            </div>
-                        ))}
-                    </form>
-                )}
-            </div>
-        </div>
-    </div>
-    <div className='px-4  ' >
-        <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
-        <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none  '>
-            {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
-        </div>
-    </div>
-</div>
+// <div className='lg:hidden flex flex-col  '>
+//     <div className=''>
+//         <div className="flex justify-end gap-1">
+//             <div className='w-1/2 mr-0.5'>
+//                 <h3
+//                     className='text-base uppercase font-medium text-slate-500 border-b  border-slate-300 cursor-pointer rounded-full text-center bg-white py-1 hover:text-white hover:bg-slate-400 shadow-lg'
+//                     onClick={() => setSortByDropdownOpen(!sortByDropdownOpen)}
+//                 >
+//                     Sort by
+//                 </h3>
+//                 {sortByDropdownOpen && (
+//                     <form className='text-sm flex flex-col gap-2 py-2'>
+//                         <div className='flex items-center gap-3  '>
+//                             <input type='radio' name='sortBy' checked={sortBy === 'ascending'} value={'ascending'} onChange={handleOnChangeSortBy} />
+//                             <label>Price - Low to High</label>
+//                         </div>
+//                         <div className='flex items-center gap-3'>
+//                             <input type='radio' name='sortBy' checked={sortBy === 'descending'} value={'descending'} onChange={handleOnChangeSortBy} />
+//                             <label className=''>Price - High to Low</label>
+//                         </div>
+//                     </form>
+//                 )}
+//             </div>
+//             <div className='w-1/2 ml-0.5 '>
+//                 <h3
+//                     className='text-base uppercase font-medium text-slate-500 border-b  border-slate-300 cursor-pointer rounded-full text-center  bg-white py-1 hover:text-white hover:bg-slate-400 shadow-lg'
+//                     onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
+//                 >
+//                     Category
+//                 </h3>
+//                 {categoryDropdownOpen && (
+//                     <form className='text-sm flex flex-col gap-2 py-2'>
+//                         {productCategory.map((categoryName, index) => (
+//                             <div key={index} className='flex items-center gap-3'>
+//                                 <input
+//                                     type='checkbox'
+//                                     name='category'
+//                                     checked={selectCategory[categoryName?.value] || false}
+//                                     value={categoryName?.value}
+//                                     id={categoryName?.value}
+//                                     onChange={handleSelectCategory}
+//                                 />
+//                                 <label htmlFor={categoryName?.value}>{categoryName?.label}</label>
+//                             </div>
+//                         ))}
+//                     </form>
+//                 )}
+//             </div>
+//         </div>
+//     </div>
+//     <div className='px-4  ' >
+//         <p className='font-medium text-slate-800 text-lg my-2'>Search Results : {data.length}</p>
+//         <div className='min-h-[calc(100vh-120px)] overflow-y-scroll max-h-[calc(100vh-120px)] scrollbar-none  '>
+//             {data.length !== 0 && <VerticalCard data={data} loading={loading} />}
+//         </div>
+//     </div>
+// </div>
 
 
 
 
 
             
-        </div>
+    //     </div>
     );
 };
 

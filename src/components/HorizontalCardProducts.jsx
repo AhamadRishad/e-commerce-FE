@@ -53,7 +53,7 @@ const HorizontalCardProducts = ({ category, heading }) => {
       <h2 className="text-2xl font-semibold py-4">{heading}</h2>
 
       <div
-        className="flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all"
+        className="flex items-center gap-4 md:gap-6 overflow-scroll scrollbar-none transition-all "
         ref={scrollElement}
       >
         <button className="dark:bg-black shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block"
@@ -99,24 +99,24 @@ const HorizontalCardProducts = ({ category, heading }) => {
         ):(
           data.map((product) => {
             return (
-              <Link   to={'card-product-detail/'+product._id} key={product._id} className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex">
-                <div className=" bg-slate-200 h-full p-4 min-w-[120px] md:min-w-[145px] ">
+              <Link   to={'card-product-detail/'+product._id} key={product._id} className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white dark:bg-gray-800 rounded-sm shadow flex">
+                <div className=" bg-slate-200  h-full p-4 min-w-[120px] md:min-w-[145px] ">
                   <img
                     src={product?.image}
                     alt=""
-                    className="object-scale-down h-full hover:scale-110 transition-all"
+                    className="object-scale-down h-full hover:scale-110 transition-all  mix-blend-multiply"
                   />
                 </div>
-                <div className="p-4 grid">
-                  <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
+                <div className="p-4 grid dark:bg-gray-800">
+                  <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black dark:text-white">
                     {product?.productName}
                   </h2>
-                  <p className="capitalize text-slate-500">{product?.category}</p>
+                  <p className="capitalize text-slate-500 dark:text-slate-300">{product?.category}</p>
                   <div className="flex gap-3">
-                    <p className="text-red-600 font-medium">
+                    <p className="text-red-600 dark:text-red-400 font-medium">
                       {displayINRCurrency(product?.price)}
                     </p>
-                    <p className="text-slate-500 line-through">
+                    <p className="text-slate-500 dark:text-slate-400 line-through">
                       {displayINRCurrency(product?.sellingPrice)}
                     </p>
                   </div>
@@ -125,7 +125,7 @@ const HorizontalCardProducts = ({ category, heading }) => {
                   >
                     Add to cart
                   </button> */}
-                     <AddToCartButton className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full" productId={product._id} />
+                     <AddToCartButton className="text-sm bg-red-600 dark:bg-red-500 hover:bg-red-700 dark:hover:bg-red-600 text-white px-3 py-0.5 rounded-full" productId={product._id} />
                 </div>
               </Link>
             );

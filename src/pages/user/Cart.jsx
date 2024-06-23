@@ -22,7 +22,8 @@ const Cart = () => {
     try {
       const token = Cookies.get('token');
       const res = await axios.get(
-        "http://localhost:3000/api/v1/user/user-added-all-cart",
+        // "http://localhost:3000/api/v1/user/user-added-all-cart",
+        `${import.meta.env.VITE_API_URL}/user/user-added-all-cart`,
         {
           headers:{
             // 'Content-Type': 'application/json',
@@ -46,7 +47,8 @@ const Cart = () => {
     const token = Cookies.get('token')
     try { 
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/add-quantity",
+        // "http://localhost:3000/api/v1/user/add-quantity",
+        `${import.meta.env.VITE_API_URL}/user/add-quantity`,
         { productId, operator },
         {
           headers:{
@@ -85,7 +87,8 @@ const Cart = () => {
     setLoading(true)
     try {
       const res = await axios.post(
-        "http://localhost:3000/api/v1/user/delete-cart-from-user",
+        // "http://localhost:3000/api/v1/user/delete-cart-from-user",
+        `${import.meta.env.VITE_API_URL}/user/delete-cart-from-user`,
         { productId },
         {
           headers:{
@@ -194,11 +197,11 @@ const Cart = () => {
   const totalPrice = data.reduce((previousValue, currValue) => previousValue + currValue.productDetails.price * currValue.quantity, 0);
 
   return (
-    <div className='container mx-auto'>
-      <div className='text-center text-lg my-3'>
+    <div className='container mx-auto '>
+      <div className='text-center text-lg my-3 '>
         {data.length === 0 && !loading && (
           <> 
-          <h1 className='text-center text-2xl border rounded m bg-white py-5 font-bold text-slate-500'>
+          <h1 className='text-center text-2xl  rounded m bg-white dark:bg-gray-600 dark:text-white py-5 font-bold text-slate-500'>
             Cart is empty
           </h1>
           <h2>
@@ -223,29 +226,29 @@ const Cart = () => {
               return (
                 <div
                   key={product?._id}
-                  className='w-full bg-white h-32 my-2 border border-slate-200 rounded grid grid-cols-[128px,1fr]'>
+                  className='w-full dark:bg-gray-800 h-32 my-2 border border-slate-200 dark:border-slate-700  rounded grid grid-cols-[128px,1fr]'>
                   <div className='w-32 h-32 bg-slate-200'>
                     <img src={product?.productDetails?.image} alt="" className='w-full h-full object-scale-down mix-blend-multiply' />
                   </div>
                   <div className='px-4 py-2 relative'>
                     {/** delete product from cart */}
-                    <div className='absolute right-0 text-red-600 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer'>
+                    <div className='absolute right-0 text-red-600 dark:text-red-500 rounded-full p-2 hover:bg-red-600 hover:text-white cursor-pointer'>
                       <MdDelete onClick={() => deleteCart(product?.productDetails?._id)} />
                     </div>
-                    <h2 className='text-lg lg:text-xl text-ellipsis line-clamp-1 dark:text-gray-900'>{product?.productDetails?.productName}</h2>
-                    <p className='capitalized text-slate-500'>{product?.productDetails?.category}</p>
+                    <h2 className='text-lg lg:text-xl text-ellipsis line-clamp-1  dark:text-slate-200'>{product?.productDetails?.productName}</h2>
+                    <p className='capitalized text-slate-500 dark:text-slate-400'>{product?.productDetails?.category}</p>
                     <div className='flex items-center justify-between'>
                       <p className='text-red-600 font-medium text-lg'>{displayINRCurrency(product?.productDetails?.price)}</p>
-                      <p className='text-slate-600 font-semibold text-lg'>{displayINRCurrency(product?.productDetails?.price * product.quantity)}</p>
+                      <p className='text-slate-600 dark:text-slate-200 font-semibold text-lg'>{displayINRCurrency(product?.productDetails?.price * product.quantity)}</p>
                     </div>
                     <div className='flex items-center gap-3 mt-1'>
                       <button
                         onClick={() => fetchQtyOperator(product?.productDetails?._id, 'minus')}
-                        className='border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded'>-</button>
-                      <span className='dark:text-gray-900'>{product.quantity}</span>
+                        className='border border-red-600 text-red-600 dark:text-red-500 dark:border-red-500 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded'>-</button>
+                      <span className='  dark:text-slate-200'>{product.quantity}</span>
                       <button
                         onClick={() => fetchQtyOperator(product?.productDetails?._id, 'plus')}
-                        className='border border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-6 h-6 flex justify-center items-center rounded'>+</button>
+                        className='border border-red-600 text-red-600 hover:bg-red-600 dark:text-red-500 dark:border-red-500 hover:text-white w-6 h-6 flex justify-center items-center rounded'>+</button>
                     </div>
                   </div>
                 </div>
@@ -260,18 +263,18 @@ const Cart = () => {
 
             <div className='mt- py-3 lg:mt-0 w-full max-w-sm'>
             {loading ? (
-              <div className='h-36 bg-slate-200 border rounded border-slate-300 animate-pulse'>
+              <div className='h-36 bg-slate-200 border rounded border-slate-300 dark:border-slate-400 animate-pulse'>
               </div>
             ) : (
               <> 
-              <div className='h-36 bg-white '>
+              <div className='h-36 bg-white dark:bg-gray-800'>
                 
                 <h2 className='text-white bg-red-600 px-4 py-1'>Order Summary</h2>
-                <div className='flex items-center justify-between px-4 gap-2 mt-2 font-medium text-lg text-slate-600'>
+                <div className='flex items-center justify-between px-4 gap-2 mt-2 font-medium text-lg text-slate-600 dark:text-slate-200'>
                   <p>Quantity</p>
                   <p>{totalQty}</p>
                 </div>
-                <div className='flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600'>
+                <div className='flex items-center justify-between px-4 gap-2 font-medium text-lg text-slate-600 dark:text-slate-200'>
                   <p>Total Price</p>
                   <p>{displayINRCurrency(totalPrice)}</p>
                 </div>

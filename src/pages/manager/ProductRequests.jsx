@@ -213,6 +213,7 @@ const ProductRequests = () => {
                           <option value="action">Action</option>
                           <option value="inactive">inactive</option>
                           <option value="active">active</option>
+                          <option value="ignore">active</option>
                         </select>
                       </div>
                     </td>

@@ -62,24 +62,24 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
             loadingList.map((_, index) => {
           return (
             <div key={index}
-            className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px]  bg-white rounded-sm shadow ">
-              <div className=" bg-slate-200 h-48 p-4 min-w-[280px] md:min-w-[145px] flex justify-center items-center animate-pulse">
+            className="w-full min-w-[280px]  md:min-w-[320px] max-w-[280px] md:max-w-[320px] dark:bg-gray-800  bg-white rounded-sm shadow ">
+              <div className=" bg-slate-200 dark:bg-gray-700 h-48 p-4 min-w-[280px] md:min-w-[145px] flex justify-center items-center animate-pulse">
                
               </div>
               <div className="p-4 grid gap-3    ">
-                <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black p-1 py-2 animate-pulse rounded-full bg-slate-200">
+                <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black dark:text-gray-300 p-1 py-2 animate-pulse rounded-full bg-slate-200 dark:bg-gray-700">
                  
                 </h2>
-                <p className="capitalize text-slate-500 p-1 animate-pulse rounded-full bg-slate-200 py-2"></p>
+                <p className="capitalize text-slate-500 p-1 animate-pulse rounded-full bg-slate-200  dark:bg-gray-700 py-2"></p>
                 <div className="flex gap-3">
-                  <p className="text-red-600 font-medium p-1 animate-pulse rounded-full bg-slate-200 w-full py-2">
+                  <p className="text-red-600 font-medium p-1 animate-pulse rounded-full bg-slate-200 dark:bg-gray-700 w-full py-2">
                    
                   </p>
-                  <p className="text-slate-500 line-through p-1 animate-pulse rounded-full bg-slate-200 w-full py-2">
+                  <p className="text-slate-500 line-through p-1 animate-pulse rounded-full bg-slate-200 dark:bg-gray-700 w-full py-2">
                  
                   </p>
                 </div>
-                <button className="text-sm px-3    animate-pulse rounded-full bg-slate-200 py-2">
+                <button className="text-sm px-3    animate-pulse rounded-full bg-slate-200 dark:bg-gray-700 py-2">
                  
                 </button>
               </div>
@@ -94,19 +94,19 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
                 <img
                   src={product?.image}
                   alt=""
-                  className="object-scale-down h-full hover:scale-110 transition-all mix-blend-multiply"
+                  className="object-scale-down h-full hover:scale-110 transition-all  mix-blend-multiply"
                 />
               </div>
-              <div className="p-4 grid gap-3    ">
-                <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
+              <div className="p-4 grid gap-3 dark:bg-gray-800   ">
+                <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black dark:text-gray-300">
                   {product?.productName}
                 </h2>
-                <p className="capitalize text-slate-500">{product?.category}</p>
+                <p className="capitalize text-slate-500 dark:text-gray-400">{product?.category}</p>
                 <div className="flex gap-3">
-                  <p className="text-red-600 font-medium">
+                  <p className="text-red-600 dark:text-red-400 font-medium">
                     {displayINRCurrency(product?.price)}
                   </p>
-                  <p className="text-slate-500 line-through">
+                  <p className="text-slate-500 dark:text-gray-400 line-through">
                     {displayINRCurrency(product?.sellingPrice)}
                   </p>
                 </div>
@@ -115,7 +115,7 @@ const CategoryWiseProductDisplay = ({ category, heading }) => {
                 >
                   Add to cart
                 </button> */}
-                  <AddToCartButton className="text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-0.5 rounded-full" productId={product._id} />
+                  <AddToCartButton className="text-sm bg-red-600 dark:bg-red-500 hover:bg-red-700 dark:hover:bg-red-600 text-white px-3 py-0.5 rounded-full" productId={product._id} />
               </div>
             </Link>
           );

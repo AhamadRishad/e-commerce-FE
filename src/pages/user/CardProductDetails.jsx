@@ -7,6 +7,7 @@ import CategoryWiseProductDisplay from "../../components/CategoryWiseProductDisp
 import AddToCartButton from "../../helpers/AddToCartButton";
 import BuyButton from "../../helpers/BuyButton";
 import DisplayAllReview from "../../components/DisplayAllReview";
+import scrollTop from "../../helpers/scrollTop";
 // import BuyButton from "../../helpers/BuyButton";
 
 const CardProductDetails = () => {
@@ -43,6 +44,7 @@ const CardProductDetails = () => {
       const dataResponse = res.data;
       setLoading(false);
       setData(dataResponse.data);
+      scrollTop();
     } catch (error) {
       console.error("Error fetching category products:", error);
     }

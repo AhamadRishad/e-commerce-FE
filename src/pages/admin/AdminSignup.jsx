@@ -53,13 +53,13 @@ const AdminSignup = () => {
               <img src={loginIcons} alt="login icons" />
             </div>
             <form >
-              <label>
+              {/* <label>
                 <div className="text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full">
                   Upload Photo
                 </div>
                 <input type="file"   className="hidden" />
-                {/* add user image in feature */}
-              </label>
+                add user image in feature
+              </label> */}
             </form>
           </div>
 
