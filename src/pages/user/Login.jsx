@@ -25,7 +25,7 @@ const Login = () => {
       console.log(res.data);
     
       Cookies.set('token', res.data.token)
-      toast.success('Login successfull');
+      toast.success('Login successful');
       navigate("/")
     } catch (error) {
       console.log(error);

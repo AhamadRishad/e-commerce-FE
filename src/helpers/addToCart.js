@@ -23,7 +23,7 @@
 
         
 //     } catch (error) {
-//         console.error("Error fetching Add to cart:", error);
+
 //         toast.error(error.response.data.message)
 //     }
    
