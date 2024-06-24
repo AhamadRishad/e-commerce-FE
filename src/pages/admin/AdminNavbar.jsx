@@ -1,41 +1,64 @@
-import React, { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaRegCircleUser } from "react-icons/fa6";
+import React, { useEffect, useState } from "react";
+import Cookies from 'js-cookie'
 import { GrSearch } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import DigitalMartLogo from "../../assets/DigitalMart.jpg";
 import ThemeToggle from "../../components/ThemeToggle.jsx"
 
 const AdminNavbar = () => {
-  const [menuDisplay, setMenuDisplay] = useState(false);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(()=>{
+    const adminToken = Cookies.get("AdminToken")
+    if(adminToken){
+      setIsLoggedIn(true);
+    }
+  })
+  const handleLogOut = () => {
+    Cookies.remove("AdminToken");
+    setIsLoggedIn(false);
+    navigate('/')
+  }
   return (
-    <header className="h-16 shadow-md bg-white">
+    <header className="h-16 shadow-md bg-white dark:bg-gray-800 fixed w-full z-40">
       <div className="h-full  mx-auto flex items-center justify-between px-4">
         <div>
           <Link to={"/"}>
             {" "}
             <img
-              className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30"
+              className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30 dark:hover:shadow-white/30"
               src={DigitalMartLogo}
               alt=""
             />{" "}
           </Link>
         </div>
 
-        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full  pl-2">
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border dark:border-2 rounded-full dark:bg-gray-600  pl-2">
           <input
             type="text"
             placeholder="search product here..."
-            className="w-ful outline-none  "
+            className="w-ful outline-none dark:bg-gray-600 dark:text-white "
           ></input>
-          <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
+          <div className="text-lg min-w-[50px] h-8 bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 flex items-center justify-center rounded-r-full text-white">
             <GrSearch />
           </div>
         </div>
 
-        <div className=" flex items-center gap-7">
+        <div className=" flex items-center gap-3">
+          
         <ThemeToggle/>
-          <div>
+       
+        {
+          isLoggedIn?(
+            <button
+            onClick={handleLogOut}
+            className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700"
+          >
+            Logout
+          </button>
+          ):(
+            <div>
             <Link
               to={"/admin/login"}
               className="px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700"
@@ -43,6 +66,9 @@ const AdminNavbar = () => {
               Login
             </Link>
           </div>
+          )
+        }
+         
         </div>
       </div>
     </header>

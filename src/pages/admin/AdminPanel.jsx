@@ -17,8 +17,10 @@ const AdminPanel = () => {
        to={"manager-panel"}>hello
        </Link> */}
         </div>
+        <main className='pt-16'> 
         <Outlet/>
         <ToastStyledContaner />
+        </main>
         {/* neeed footer */}
     </div>
     </div>

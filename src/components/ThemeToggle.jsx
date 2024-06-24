@@ -26,7 +26,7 @@ const ThemeToggle = () => {
 
 <button
 onClick={toggleTheme}
-className="p-1.5 ml-1 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-slate-300 dark:hover:bg-gray-600 rounded"
+className="p-1.5 ml-1 bg-gray-200 dark:bg-gray-200 text-gray-800 dark:text-gray-800 hover:bg-slate-300 dark:hover:bg-gray-600 rounded"
 >
 {theme === 'light' ? <FaMoon /> : <FaSun />}
 </button>

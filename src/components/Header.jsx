@@ -79,32 +79,32 @@ const Header = () => {
     }
   };
   return (
-    <header className="h-16 shadow-md bg-white fixed w-full  z-40">
+    <header className="h-16 shadow-md bg-white dark:bg-gray-800 fixed w-full  z-40">
       <div className="h-full  mx-auto flex items-center justify-between px-4">
         <div>
           <Link to={"/"}>
             {" "}
             <img
-              className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30"
+              className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30 dark:hover:shadow-white/30"
               src={DigitalMartLogo}
               alt=""
             />{" "}
           </Link>
         </div>
-        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full  pl-2">
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border dark:border-2 rounded-full dark:bg-gray-600  pl-2">
           <input
             type="text"
             placeholder="search product here..."
-            className="w-ful outline-none  "
+            className="w-ful outline-none dark:bg-gray-600 dark:text-white "
             onChange={handleSearch}
             value={search}
           ></input>
-          <div className="text-lg min-w-[50px] h-8 bg-red-600 flex items-center justify-center rounded-r-full text-white">
+          <div className="text-lg min-w-[50px] h-8 bg-red-600 dark:bg-red-500 dark:hover:bg-red-600 flex items-center justify-center rounded-r-full text-white ">
             <GrSearch className="text-gray-900 dark:text-gray-900" />
           </div>
         </div>
 
-        <div className=" flex items-center lg:gap-7 gap-3">
+        <div className=" flex items-center lg:gap-3 gap-3">
           <div className="relative  flex justify-center shadow-lg rounded-full">
             {
               // user._id &&    => edit when connected axios => if user is not available or not logged in dont show the FaRegCircleUser icon
@@ -112,7 +112,7 @@ const Header = () => {
                 className="text-3xl cursor-pointer relative flex justify-center"
                 onClick={() => setMenuDisplay((preve) => !preve)}
               >
-                <FaRegCircleUser  className="text-gray-900 dark:text-gray-900"/>
+                <FaRegCircleUser  className="text-gray-900 dark:text-white"/>
               </div>
             }
 
@@ -122,14 +122,16 @@ const Header = () => {
                   {isManager === "manager" ? (
                     <Link
                       to={"/manager-panel"}
-                      className="whitespace-nowrap  md:block dark:hover:bg-slate-200 dark:hover:text-gray-900 dark:bg-gray-900 hover:bg-slate-100 p-2 rounded"
+                      onClick={()=>setMenuDisplay(false)}
+                      className="whitespace-nowrap  md:block dark:hover:bg-slate-400 dark:hover:text-gray-900 dark:bg-gray-900 hover:bg-slate-100 p-2 rounded"
                     >
                       Manager Panel
                     </Link>
                   ) : (
                     <Link
                       to={"/admin/my-upload"}
-                      className="whitespace-nowrap  md:block dark:hover:bg-slate-200 dark:hover:text-gray-900 dark:bg-gray-900 hover:bg-slate-100 p-2 rounded"
+                    
+                      className="whitespace-nowrap  md:block dark:hover:bg-slate-400  dark:hover:text-gray-900 dark:bg-gray-900 hover:bg-slate-100 p-2 rounded"
                     >
                       Seller panel
                     </Link>
@@ -143,7 +145,7 @@ const Header = () => {
           )  :(
             <Link to={"/cart"} className="text-2xl cursor-pointer relative ">
             <span>
-              <FaShoppingCart className="text-gray-900 dark:text-gray-900"/>
+              <FaShoppingCart className="text-gray-900 dark:text-white"/>
             </span>
             <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-center absolute -top-2 -right-3">
               <p className="text-sm">{totalProducts}</p>
