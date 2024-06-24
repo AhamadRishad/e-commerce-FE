@@ -10,13 +10,14 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import ToastStyledContaner from '../../components/ToastStyledContaner.jsx'
 
 let userSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().required().email(),
   password: yup.string().required().min(6),
-  mobile:yup.number().required().min(10),
+  mobile:yup.string().required()
+  .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
 });
 
 const AdminSignup = () => {
@@ -30,15 +31,25 @@ const AdminSignup = () => {
     try {
        const res = await axios.post(
         // "http://localhost:3000/api/v1/admin/signup",
-        `${import.meta.env.VITE_API_URL}/admin/login`,
+        `${import.meta.env.VITE_API_URL}/admin/signup`,
         data);
       console.log(res.data);
       // Cookies.set('token', res.data.token)
-      toast.success('Login successfull');
-      navigate("/admin/login")
+      // toast.success('Login successfull');
+      // navigate("/admin/login")
+
+
+      if(res.data.success) {
+        toast.success(res.data.message);
+        navigate("/admin/login")
+      }else{
+        toast.error(res.data.message);
+      }
+
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      // toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message || 'Login failed');
     }
   };
 
@@ -47,6 +58,7 @@ const AdminSignup = () => {
   
   return (
     <section id="signup">
+      <ToastStyledContaner/>
       <div className="mx-auto container p-4">
       <h3 className='mx-auto ml-20 md:block '>Admin Login</h3>
         <div className="bg-white p-5 w-full max-w-sm mx-auto">

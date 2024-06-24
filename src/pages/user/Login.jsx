@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ToastStyledContaner from '../../components/ToastStyledContaner';
 
 const Login = () => {
   // var token=null;
@@ -19,17 +20,27 @@ const Login = () => {
       const res = await axios.post(
         // "http://localhost:3000/api/v1/user/signin",
         `${import.meta.env.VITE_API_URL}/user/signin`,
-        data, {Credentials: true});
+        data,);
       
       console.log(data);
       console.log(res.data);
     
-      Cookies.set('token', res.data.token)
-      toast.success('Login successful');
-      navigate("/")
+      // Cookies.set('token', res.data.token)
+      // toast.success('Login successful');
+      // navigate("/")
+
+      if (res.data.success) {
+        Cookies.set('token', res.data.token);
+        toast.success(res.data.message);
+        navigate("/");
+      } else {
+        toast.error(res.data.message);
+      }
+      
     } catch (error) {
       console.log(error);
-      toast.error("Login failed");
+      toast.error(error.response?.data?.message || 'Login failed');
+      
     }
   };
 
@@ -51,6 +62,7 @@ const Login = () => {
 
   return (
    <section id='login'>
+    <ToastStyledContaner/>
     <div className='mx-auto container p-4'>
 
       <div className='bg-white p-5 py-5 w-full max-w-sm mx-auto rounded'>

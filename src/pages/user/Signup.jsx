@@ -1,8 +1,7 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import loginIcons from "../../assets/signin.gif";
-
-import Cookies from "js-cookie" 
+ 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -10,13 +9,15 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import axios from "axios";
 import { toast } from "react-toastify";
+import ToastStyledContaner from '../../components/ToastStyledContaner.jsx' 
 
 
 let userSchema = yup.object({
   name: yup.string().required(),
   email: yup.string().required().email(),
   password: yup.string().required().min(6),
-  mobile:yup.number().required().min(10),
+  mobile:yup.string().required()
+  .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
 });
 
 const Signup = () => {
@@ -33,12 +34,19 @@ const Signup = () => {
         `${import.meta.env.VITE_API_URL}/user/signup`,
         data);
       console.log(res.data);
-      Cookies.set('token', res.data.token)
-      toast.success('Signed success');
-      navigate("/login")
+      // Cookies.set('token', res.data.token)
+      // toast.success('Signed success');
+      // navigate("/login")
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/");
+      } else {
+        toast.error(res.data.message);
+      }
     } catch (error) {
+      toast.error(error.response.data?.message || 'Login failed');
       console.log(error);
-      toast.error(error.response.data.message);
+      
     }
   };
 
@@ -47,6 +55,7 @@ const Signup = () => {
   
   return (
     <section id="signup">
+      <ToastStyledContaner/>
       <div className="mx-auto container p-4">
         <div className="bg-white p-5 w-full max-w-sm mx-auto">
           <div className="w-20 h-20 mx-auto relative overflow-hidden rounded-full">
@@ -55,13 +64,13 @@ const Signup = () => {
               <img src={loginIcons} alt="login icons" />
             </div>
             <form >
-              <label>
+              {/* <label>
                 <div className="text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full">
                   Upload Photo
                 </div>
                 <input type="file"   className="hidden" />
-                {/* add user image in feature */}
-              </label>
+                add user image in feature
+              </label> */}
             </form>
           </div>
 

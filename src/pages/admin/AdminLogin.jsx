@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ToastStyledContaner from '../../components/ToastStyledContaner.jsx'
 
 const AdminLogin = () => {
  
@@ -23,16 +24,26 @@ const AdminLogin = () => {
         `${import.meta.env.VITE_API_URL}/admin/login`,
         data);
       console.log(res.message);
-      Cookies.set('AdminToken', res.data.AdminToken)
+      // Cookies.set('AdminToken', res.data.AdminToken)
       console.log(data);
       console.log(res.data);
     
-    toast.success('Login successfully');
+    // toast.success('Login successfully');
+    //   navigate("/admin/my-upload")
+
+    if(res.data.success) {
+      Cookies.set('AdminToken', res.data.AdminToken)
       navigate("/admin/my-upload")
+    }else{
+      toast.error(res.data.message)
+    }
+
+
     } catch (error) {
-      toast.error(res.message)
+   
       console.log(error);
-      // toast.error('login Failed')
+      toast.error(error.response?.data?.message || 'Login failed');
+   
     }
   };
 
@@ -54,6 +65,7 @@ const AdminLogin = () => {
 
   return (
    <section id='login'>
+    <ToastStyledContaner/>
     <div className='mx-auto container p-4'>
 
       <div className='bg-white p-5 py-5 w-full max-w-sm mx-auto rounded'>

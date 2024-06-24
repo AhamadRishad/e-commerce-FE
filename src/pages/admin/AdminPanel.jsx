@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import AdminNavbar from './AdminNavbar'
-import { ToastContainer } from 'react-toastify'
+import ToastStyledContaner from '../../components/ToastStyledContaner'
 
 const AdminPanel = () => {
   return (
@@ -18,7 +18,7 @@ const AdminPanel = () => {
        </Link> */}
         </div>
         <Outlet/>
-        <ToastContainer autoClose='700' position='bottom-right'></ToastContainer>
+        <ToastStyledContaner />
         {/* neeed footer */}
     </div>
     </div>
