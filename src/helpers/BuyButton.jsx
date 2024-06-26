@@ -16,7 +16,12 @@ const BuyButton = ({productId , className}) => {
           const res = await axios.post(
             `${import.meta.env.VITE_API_URL}/user/add-to-cart`,
             { productId },
-            { withCredentials: true }
+            {
+              headers:{
+               'Authorization': `Bearer ${token}`
+              },
+            },
+            // { withCredentials: true }
           );
           const responseData = res.data;
           console.log(responseData);
@@ -29,6 +34,7 @@ const BuyButton = ({productId , className}) => {
           
         } catch (error) {
             navigate('/cart')
+            toast.error(error.response?.data?.message || "Error adding to cart");
           console.error("Error adding to cart:", error);
           // toast.success(error.response?.data?.message || "Error adding to cart");
         }
