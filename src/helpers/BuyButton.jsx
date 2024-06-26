@@ -3,6 +3,7 @@ import React from 'react'
 import { toast } from 'react-toastify';
 import useCartStore from '../stateManagement/cartStore';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'
 
 const BuyButton = ({productId , className}) => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const BuyButton = ({productId , className}) => {
        
     
         try {
+          const token = Cookies.get('token')
           const res = await axios.post(
             `${import.meta.env.VITE_API_URL}/user/add-to-cart`,
             { productId },
