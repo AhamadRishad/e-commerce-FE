@@ -93,7 +93,7 @@ const EditProducts = () => {
     try {
       await axios.put(
         // `http://localhost:3000/api/v1/admin/update-product/${id}`,
-        `${import.meta.env.VITE_API_URL}/admin/update-product`,
+        `${import.meta.env.VITE_API_URL}/admin/update-product/${id}`,
         requestBody,
         {
           withCredentials: true,
