@@ -9,6 +9,7 @@ import displayINRCurrency from '../../helpers/displayCurrency';
 import { MdDelete } from 'react-icons/md';
 import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom';
+import scrollTop from '../../helpers/scrollTop'
 
 const Cart = () => {
   const [data, setData] = useState([]);
@@ -35,6 +36,7 @@ const Cart = () => {
       const dataResponse = res.data.userAllCart;
       setLoading(false); 
       setData(dataResponse);
+      scrollTop();
       console.log(dataResponse)
     } catch (error) {
       console.error("Error fetching category products:", error);
