@@ -60,8 +60,8 @@ const AdminSignup = () => {
     <section id="signup">
       <ToastStyledContaner/>
       <div className="mx-auto container p-4">
-      <h3 className='mx-auto ml-20 md:block '>Admin Login</h3>
         <div className="bg-white p-5 w-full max-w-sm mx-auto">
+        <h3 className='text-center pb-3 font-medium'>Seller panel</h3>
           <div className="w-20 h-20 mx-auto relative overflow-hidden rounded-full">
             <div>
               {/* <img src={data.profilePic || loginIcons} alt="login icons" /> */}

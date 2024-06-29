@@ -69,12 +69,14 @@ const AdminLogin = () => {
     <div className='mx-auto container p-4'>
 
       <div className='bg-white p-5 py-5 w-full max-w-sm mx-auto rounded'>
-        <h3 className='mx-auto ml-20 md:block '>Admin Login</h3>
+       
         <div className='w-20 h-20 mx-auto'>
-            <img src={loginIcon} alt='login icon'/>
+            <img className='rounded-full' src={loginIcon} alt='login icon'/>
+            
         </div>
+        <h3 className='text-center pt-3 font-medium'>Seller panel</h3>
 
-        <form  onSubmit={handleSubmit(onSubmit)} className='pt-6 flex flex-col gap2' >
+        <form  onSubmit={handleSubmit(onSubmit)} className='pt-3 flex flex-col gap2' >
             <div className='grid'>
                 <label >Email :</label>
                <div  className='bg-slate-100 p-2 '>
