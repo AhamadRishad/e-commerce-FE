@@ -3,12 +3,12 @@ import { GrSearch } from "react-icons/gr";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import DigitalMartLogo from "../assets/DigitalMart.jpg";
 import useCartStore from "../stateManagement/cartStore";
 import Cookies from "js-cookie";
 import axios from "axios";
 import ThemeToggle from "./ThemeToggle";
 import { toast } from "react-toastify";
+import LOGO from '../assets/banner/LOGO E-Commerce.png'
 
 
 const Header = () => {
@@ -86,7 +86,7 @@ const Header = () => {
             {" "}
             <img
               className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30 dark:hover:shadow-white/30"
-              src={DigitalMartLogo}
+              src={LOGO}
               alt=""
             />{" "}
           </Link>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Cookies from 'js-cookie'
 import { GrSearch } from "react-icons/gr";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import DigitalMartLogo from "../../assets/DigitalMart.jpg";
 import ThemeToggle from "../../components/ThemeToggle.jsx"
+import LOGO from "../../assets/banner/LOGO E-Commerce.png"
 
 const AdminNavbar = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const AdminNavbar = () => {
             {" "}
             <img
               className="h-12 max-w-sm rounded-lg shadow-none transition-shadow duration-300 ease-in-out hover:shadow-lg hover:shadow-black/30 dark:hover:shadow-white/30"
-              src={DigitalMartLogo}
+              src={LOGO}
               alt=""
             />{" "}
           </Link>
