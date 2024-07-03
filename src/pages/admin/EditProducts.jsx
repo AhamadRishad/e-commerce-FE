@@ -11,8 +11,8 @@ const schema = yup.object().shape({
   brandName: yup.string().required("Brand Name is required"),
   price: yup.number().required("Price is required"),
   sellingPrice:yup.number().required(),
-//   adminEmail: yup.string().required("Admin Email is required"),
-//   image: yup.mixed(),
+  adminEmail: yup.string().required("Admin Email is required"),
+  image: yup.mixed(),
   description: yup.string().required("Description is required"),
   category: yup.string().required("Category is required"),
 });
@@ -23,8 +23,10 @@ const EditProducts = () => {
   const location = useLocation();
   const { product } = location.state || {};
 
+
   const [allAdmins, setAllAdmins] = useState([]);
   const [productCategory, setProductCategory] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const {
     register,
@@ -63,6 +65,7 @@ const EditProducts = () => {
     fetchAdmins();
     fetchCategories();
   }, []);
+  console.log(product)
 
   useEffect(() => {
     if (product) {
@@ -73,6 +76,7 @@ const EditProducts = () => {
       setValue("category", product.category);
       setValue("description", product.description);
       setValue("sellingPrice", product.sellingPrice);
+      setValue("image", product.image[0]);
       
     }
   }, [product, setValue]);
@@ -86,7 +90,7 @@ const EditProducts = () => {
       category: data.category,
       adminEmail: data.adminEmail,
       description: data.description,
-    //   image: data.image[0],
+      // image: data.image[0],
   
     };
 
@@ -103,6 +107,19 @@ const EditProducts = () => {
       navigate("/admin/my-upload");
     } catch (error) {
       console.error(error);
+    }
+  };
+
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      
     }
   };
 
@@ -192,7 +209,8 @@ const EditProducts = () => {
                 {errors.adminEmail && <p className="text-red-600">{errors.adminEmail.message}</p>}
               </div>
             </div>
-            <label htmlFor="productImage">
+
+            {/* <label htmlFor="productImage">
               <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
                 <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
                   <span className="text-4xl">
@@ -208,7 +226,73 @@ const EditProducts = () => {
                   {errors.image && <p className="text-red-600">{errors.image.message}</p>}
                 </div>
               </div>
-            </label> 
+            </label>  */}
+
+
+          <label className="relative">
+              <input
+                {...register("image")}
+                id="productImage"
+                type="file"
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+                onChange={handleImageChange}
+              />
+              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
+                <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
+                  <span className="text-4xl">
+                    <IoCloudUploadSharp className="dark:text-gray-950" />
+                  </span>
+                  <p className="text-sm dark:text-gray-950">
+                    Upload Product Image
+                  </p>
+                </div>
+              </div>
+              {errors.image && (
+                <p className="text-red-600">{errors.image.message}</p>
+              )}
+            </label>
+{/* 
+            {
+              product.image &&(
+                <div className="bg-slate-100 dark:bg-slate-400 p-2 rounded">
+                <img
+                  src={product.image}
+                  className="w-20 h-auto rounded "
+                />
+              </div>
+              )
+            }
+
+            {selectedImage && (
+              <div className="bg-slate-100 dark:bg-slate-400 p-2 rounded">
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-20 h-auto rounded "
+                />
+              </div>
+            )} */}
+
+{
+  selectedImage ? (
+    <div className="bg-slate-100 dark:bg-slate-400 p-2 rounded">
+      <img
+        src={selectedImage}
+        alt="Selected"
+        className="w-20 h-auto rounded"
+      />
+    </div>
+  ) : (
+    <div className="bg-slate-100 dark:bg-slate-400 p-2 rounded">
+      <img
+        src={product.image}
+        className="w-20 h-auto rounded"
+      />
+    </div>
+  )
+}
+
+
 
 
 
@@ -235,6 +319,5 @@ const EditProducts = () => {
 };
 
 export default EditProducts;
-
 
 
