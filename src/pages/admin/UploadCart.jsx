@@ -1,7 +1,3 @@
-
-
-
-
 import React from "react";
 import { IoClose, IoCloudUploadSharp } from "react-icons/io5";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,20 +12,20 @@ const schema = yup
   .object({
     productName: yup.string().required(),
     brandName: yup.string().required(),
-    price:yup.number(),
-    sellingPrice:yup.number(),
+    price: yup.number(),
+    sellingPrice: yup.number(),
     adminEmail: yup.string().required(),
     image: yup.mixed().required(),
     description: yup.string().required(),
-    category: yup.string().required(), 
+    category: yup.string().required(),
   })
   .required();
 
 const UploadCart = () => {
-
   const navigate = useNavigate();
   const [AllAdmins, setAllAdmins] = useState([]);
   const [productCategory, setProductCategory] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const admins = async () => {
@@ -52,7 +48,7 @@ const UploadCart = () => {
       try {
         const res = await axios.get(
           // "http://localhost:3000/api/v1/admin/categories"
-           `${import.meta.env.VITE_API_URL}/admin/categories`
+          `${import.meta.env.VITE_API_URL}/admin/categories`
         );
         const categoryData = res.data;
         setProductCategory(categoryData);
@@ -74,19 +70,18 @@ const UploadCart = () => {
       productName: data.productName,
       brandName: data.brandName,
       price: data.price,
-      sellingPrice:data.sellingPrice,
+      sellingPrice: data.sellingPrice,
       category: data.category,
       adminEmail: data.adminEmail,
       description: data.description,
       image: data.image[0],
-      
     };
-    console.log(requestBody)
+    console.log(requestBody);
 
     try {
       const res = await axios.post(
         // "http://localhost:3000/api/v1/admin/add-cart",
-           `${import.meta.env.VITE_API_URL}/admin/add-cart`,
+        `${import.meta.env.VITE_API_URL}/admin/add-cart`,
         requestBody,
         {
           withCredentials: true,
@@ -95,13 +90,24 @@ const UploadCart = () => {
           },
         }
       );
-      console.log("requestBody = ",requestBody);
-      console.log("res.data",res.data);
+      console.log("requestBody = ", requestBody);
+      console.log("res.data", res.data);
       //toast success
       navigate("/admin/my-upload");
     } catch (error) {
       console.error(error);
       //toast failed
+    }
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -112,7 +118,7 @@ const UploadCart = () => {
           <div className="flex justify-between items-center">
             <h2 className="font-bold text-xl ml-4">Upload Product</h2>
             <div
-              onClick={() => navigate('/admin/my-upload')}
+              onClick={() => navigate("/admin/my-upload")}
               className="w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer"
             >
               <IoClose />
@@ -128,45 +134,43 @@ const UploadCart = () => {
               placeholder="Product Name"
               className="p-2 bg-slate-100 dark:bg-slate-400 dark:text-black border dark:placeholder-gray-950 rounded "
             />
-            {errors.productName && <p className="text-red-600">{errors.productName.message}</p>}
+            {errors.productName && (
+              <p className="text-red-600">{errors.productName.message}</p>
+            )}
             <input
               {...register("brandName")}
               type="text"
               placeholder="Brand Name"
               className="p-2 bg-slate-100 border rounded dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
             />
-            {errors.brandName && <p className="text-red-600">{errors.brandName.message}</p>}
+            {errors.brandName && (
+              <p className="text-red-600">{errors.brandName.message}</p>
+            )}
 
+            <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
+              <div className="flex-1">
+                <input
+                  {...register("sellingPrice")}
+                  type="text"
+                  placeholder="selling Price"
+                  className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+                />
+                {errors.sellingPrice && (
+                  <p className="text-red-600">{errors.sellingPrice.message}</p>
+                )}
+              </div>
 
-            <div className="flex flex-col lg:flex-row justify-between gap-4 w-full"> 
-
-            <div className="flex-1">
-            <input
-              {...register("sellingPrice")}
-              type="text"
-              placeholder="selling Price"
-              className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
-            />
-            {errors.sellingPrice && <p className="text-red-600">{errors.sellingPrice.message}</p>}
-            </div>
-
-
-
-            <div className="flex-1 ">
-
-            <input
-              {...register("price")}
-              type="text"
-              placeholder="Price"
-              className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
-            />
-            {errors.price && <p className="text-red-600">{errors.price.message}</p>}
-            </div>
-
-
-           
-
-
+              <div className="flex-1 ">
+                <input
+                  {...register("price")}
+                  type="text"
+                  placeholder="Price"
+                  className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+                />
+                {errors.price && (
+                  <p className="text-red-600">{errors.price.message}</p>
+                )}
+              </div>
             </div>
 
             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
@@ -175,18 +179,22 @@ const UploadCart = () => {
                   className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
                   {...register("category")}
                 >
-                  <option
-                   className="dark:text-gray-950"
-                  value="">Select Category</option>
-                  { productCategory.map((product, index) => (
+                  <option className="dark:text-gray-950" value="">
+                    Select Category
+                  </option>
+                  {productCategory.map((product, index) => (
                     <option
-                    className="dark:text-gray-950"
-                     key={index} value={product.value}>
+                      className="dark:text-gray-950"
+                      key={index}
+                      value={product.value}
+                    >
                       {product.label}
                     </option>
                   ))}
                 </select>
-                {errors.category && <p className="text-red-600">{errors.category.message}</p>}
+                {errors.category && (
+                  <p className="text-red-600">{errors.category.message}</p>
+                )}
               </div>
               <div className="flex-1 w-full lg:w-1/2">
                 <select
@@ -195,17 +203,21 @@ const UploadCart = () => {
                 >
                   <option value="">Select Your Email</option>
                   {AllAdmins.map((admin, index) => (
-                    <option 
-                     className="dark:text-gray-950"
-                    key={index} value={admin.email}>
+                    <option
+                      className="dark:text-gray-950"
+                      key={index}
+                      value={admin.email}
+                    >
                       {admin.email}
                     </option>
                   ))}
                 </select>
-                {errors.adminEmail && <p className="text-red-600">{errors.adminEmail.message}</p>}
+                {errors.adminEmail && (
+                  <p className="text-red-600">{errors.adminEmail.message}</p>
+                )}
               </div>
             </div>
-            <label htmlFor="productImage">
+            {/* <label htmlFor="productImage">
               <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
                 <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
                   <span className="text-4xl">
@@ -217,17 +229,91 @@ const UploadCart = () => {
                     {...register("image")}
                     type="file"
                     className="hidden"
+                   
+                    onChange={handleImageChange}
+
                   />
                   {errors.image && <p className="text-red-600">{errors.image.message}</p>}
                 </div>
               </div>
+            </label> */}
+
+            {/* <label>
+              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
+                <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
+                  <span className="text-4xl">
+                    <IoCloudUploadSharp className="dark:text-gray-950" />
+                  </span>
+                  <p className="text-sm dark:text-gray-950">
+                    Upload Product Image
+                  </p>
+                </div>
+                <input
+                  {...register("image")}
+                  id="productImage"
+                  type="file"
+                  // className="hidden"
+                  onChange={handleImageChange}
+                />
+                {errors.image && (
+                  <p className="text-red-600">{errors.image.message}</p>
+                )}
+              </div>
+            </label> */}
+
+            <label className="relative">
+              <input
+                {...register("image")}
+                id="productImage"
+                type="file"
+                className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
+                onChange={handleImageChange}
+              />
+              <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
+                <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
+                  <span className="text-4xl">
+                    <IoCloudUploadSharp className="dark:text-gray-950" />
+                  </span>
+                  <p className="text-sm dark:text-gray-950">
+                    Upload Product Image
+                  </p>
+                </div>
+              </div>
+              {errors.image && (
+                <p className="text-red-600">{errors.image.message}</p>
+              )}
             </label>
+
+            {/* <label>
+              <input name="" id=""
+              {...register("image")}
+               type="file"
+               label="upload image"
+               focused
+               fullWidth
+               onChange={handleImageChange}
+
+              /> 
+            </label> */}
+
+            {selectedImage && (
+              <div className="bg-slate-100 dark:bg-slate-400 p-2 rounded">
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-20 h-auto rounded "
+                />
+              </div>
+            )}
+
             <textarea
               {...register("description")}
               placeholder="Enter product description"
               className="p-2 bg-slate-100 border rounded resize-none h-28 dark:bg-slate-400 dark:placeholder-gray-950 dark:text-black"
             />
-            {errors.description && <p className="text-red-600">{errors.description.message}</p>}
+            {errors.description && (
+              <p className="text-red-600">{errors.description.message}</p>
+            )}
             <input
               type="submit"
               className="bg-red-600 text-white mb-10 px-3 py-2 rounded hover:bg-red-700 "
@@ -241,9 +327,221 @@ const UploadCart = () => {
 
 export default UploadCart;
 
+// import React, { useEffect, useState } from "react";
+// import { IoClose, IoCloudUploadSharp } from "react-icons/io5";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import axios from "axios";
+// import { useForm } from "react-hook-form";
+// import * as yup from "yup";
+// import { useNavigate } from "react-router-dom";
 
+// const schema = yup.object({
+//   productName: yup.string().required(),
+//   brandName: yup.string().required(),
+//   price: yup.number(),
+//   sellingPrice: yup.number(),
+//   adminEmail: yup.string().required(),
+//   // image: yup.mixed().required("Image is required"),
+//   description: yup.string().required(),
+//   category: yup.string().required(),
+// }).required();
 
+// const UploadCart = () => {
+//   const navigate = useNavigate();
+//   const [AllAdmins, setAllAdmins] = useState([]);
+//   const [productCategory, setProductCategory] = useState([]);
+//   const [selectedImage, setSelectedImage] = useState(null);
 
+//   useEffect(() => {
+//     const admins = async () => {
+//       try {
+//         const res = await axios.get(`${import.meta.env.VITE_API_URL}/manager/get-admins`);
+//         setAllAdmins(res.data);
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     };
+//     admins();
+//   }, []);
+
+//   useEffect(() => {
+//     const categories = async () => {
+//       try {
+//         const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/categories`);
+//         setProductCategory(res.data);
+//       } catch (error) {
+//         console.error(error);
+//       }
+//     };
+//     categories();
+//   }, []);
+
+//   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm({
+//     resolver: yupResolver(schema),
+//   });
+
+//   const watchImage = watch("image"); // Watch the image input field
+
+//   const onSubmit = async (data) => {
+//     const formData = new FormData();
+//     formData.append("productName", data.productName);
+//     formData.append("brandName", data.brandName);
+//     formData.append("price", data.price);
+//     formData.append("sellingPrice", data.sellingPrice);
+//     formData.append("category", data.category);
+//     formData.append("adminEmail", data.adminEmail);
+//     formData.append("description", data.description);
+//     formData.append("image", data.image[0]);
+
+//     try {
+//       const res = await axios.post(`${import.meta.env.VITE_API_URL}/admin/add-cart`, formData, {
+//         withCredentials: true,
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
+//       console.log("formData = ", formData);
+//       console.log("res.data", res.data);
+//       navigate("/admin/my-upload");
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
+
+//   const handleImageChange = (e) => {
+//     const file = e.target.files[0];
+//     setValue("image", e.target.files); // Update the value for react-hook-form
+//     if (file) {
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         setSelectedImage(e.target.result);
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   };
+
+//   return (
+//     <div className="p-2">
+//       <div className="fixed w-full h-full bg-slate-200 dark:bg-gray-900 dark:bg-opacity-35 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+//         <div className="bg-white dark:bg-gray-900 py-6 px-3 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
+//           <div className="flex justify-between items-center">
+//             <h2 className="font-bold text-xl ml-4">Upload Product</h2>
+//             <div onClick={() => navigate("/admin/my-upload")} className="w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer">
+//               <IoClose />
+//             </div>
+//           </div>
+//           <form onSubmit={handleSubmit(onSubmit)} className="grid p-4 gap-3 overflow-y-scroll h-full pb-5 ">
+//             <input
+//               {...register("productName")}
+//               type="text"
+//               placeholder="Product Name"
+//               className="p-2 bg-slate-100 dark:bg-slate-400 dark:text-black border dark:placeholder-gray-950 rounded"
+//             />
+//             {errors.productName && <p className="text-red-600">{errors.productName.message}</p>}
+//             <input
+//               {...register("brandName")}
+//               type="text"
+//               placeholder="Brand Name"
+//               className="p-2 bg-slate-100 border rounded dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+//             />
+//             {errors.brandName && <p className="text-red-600">{errors.brandName.message}</p>}
+
+//             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
+//               <div className="flex-1">
+//                 <input
+//                   {...register("sellingPrice")}
+//                   type="text"
+//                   placeholder="Selling Price"
+//                   className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+//                 />
+//                 {errors.sellingPrice && <p className="text-red-600">{errors.sellingPrice.message}</p>}
+//               </div>
+
+//               <div className="flex-1">
+//                 <input
+//                   {...register("price")}
+//                   type="text"
+//                   placeholder="Price"
+//                   className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+//                 />
+//                 {errors.price && <p className="text-red-600">{errors.price.message}</p>}
+//               </div>
+//             </div>
+
+//             <div className="flex flex-col lg:flex-row justify-between gap-4 w-full">
+//               <div className="flex-1 w-full lg:w-1/2">
+//                 <select
+//                   className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+//                   {...register("category")}
+//                 >
+//                   <option className="dark:text-gray-950" value="">Select Category</option>
+//                   {productCategory.map((product, index) => (
+//                     <option className="dark:text-gray-950" key={index} value={product.value}>
+//                       {product.label}
+//                     </option>
+//                   ))}
+//                 </select>
+//                 {errors.category && <p className="text-red-600">{errors.category.message}</p>}
+//               </div>
+//               <div className="flex-1 w-full lg:w-1/2">
+//                 <select
+//                   className="p-2 bg-slate-100 border rounded w-full dark:text-black dark:bg-slate-400 dark:placeholder-gray-950"
+//                   {...register("adminEmail")}
+//                 >
+//                   <option value="">Select Your Email</option>
+//                   {AllAdmins.map((admin, index) => (
+//                     <option className="dark:text-gray-950" key={index} value={admin.email}>
+//                       {admin.email}
+//                     </option>
+//                   ))}
+//                 </select>
+//                 {errors.adminEmail && <p className="text-red-600">{errors.adminEmail.message}</p>}
+//               </div>
+//             </div>
+//             <label htmlFor="productImage">
+//               <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer dark:bg-slate-400 dark:placeholder-gray-950">
+//                 <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
+//                   <span className="text-4xl">
+//                     <IoCloudUploadSharp className="dark:text-gray-950" />
+//                   </span>
+//                   <p className="text-sm dark:text-gray-950">Upload Product Image</p>
+//                   <input
+//                     id="productImage"
+//                     name="image"
+//                     {...register("image")}
+//                     type="file"
+//                     className="hidden"
+//                     onChange={handleImageChange}
+//                   />
+//                   {/* {errors.image && <p className="text-red-600">{errors.image.message}</p>} */}
+//                 </div>
+//               </div>
+//             </label>
+
+//             {selectedImage && (
+//               <label className="bg-slate-100 dark:bg-slate-400 p-2 rounded">
+//                 <img src={selectedImage} alt="Selected" className="w-20 h-20 rounded" />
+//               </label>
+//             )}
+
+//             <textarea
+//               {...register("description")}
+//               placeholder="Enter product description"
+//               className="p-2 bg-slate-100 border rounded resize-none h-28 dark:bg-slate-400 dark:placeholder-gray-950 dark:text-black"
+//             />
+//             {errors.description && <p className="text-red-600">{errors.description.message}</p>}
+//             <input
+//               type="submit"
+//               className="bg-red-600 text-white mb-10 px-3 py-2 rounded hover:bg-red-700"
+//             />
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UploadCart;
 
 // import React from "react";
 // import { IoClose, IoCloudUploadSharp } from "react-icons/io5";
@@ -263,7 +561,7 @@ export default UploadCart;
 //     adminEmail: yup.string().required(),
 //     image: yup.mixed().required(),
 //     description: yup.string().required(),
-//     category: yup.string().required(), 
+//     category: yup.string().required(),
 //   })
 //   .required();
 
@@ -297,16 +595,13 @@ export default UploadCart;
 //   //     reader.readAsDataURL(file);
 //   //   });
 //   // };
- 
+
 //   // const handleDeleteImage = (index) => {
 //   //   setImagePreviews((prevPreviews) =>
 //   //     prevPreviews.filter((_, i) => i !== index)
 //   //   );
 //   // };
-  
- 
 
- 
 //   useEffect(() => {
 //     //add try catch to this api
 //     const admins = async () => {
@@ -360,7 +655,7 @@ export default UploadCart;
 //           },
 //         }
 //       );
-      
+
 //       console.log(res.data);
 //       navigate("/admin/my-upload");
 //       //tost success
@@ -371,7 +666,7 @@ export default UploadCart;
 //   };
 
 //   return (
-   
+
 //     <div className="p-2 ">
 //       <div className="fixed w-full  h-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
 //         <div className="bg-white py-6 px-3 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
@@ -415,12 +710,8 @@ export default UploadCart;
 //             />
 //             {errors.price && <p>{errors.price.message}</p>}
 
-
-
-
-          
 //             <div className="flex justify-between gap-4 w-full">
-//               <div className="flex-1 w-60">                
+//               <div className="flex-1 w-60">
 //                 <select
 //                   className="p-2 bg-slate-100 border rounded w-full"
 //                   {...register("category")}
@@ -451,13 +742,10 @@ export default UploadCart;
 //               </div>
 //             </div>
 
-
-
-
 //             {/* <div className="flex justify-between gap-4 w-full">
 
 //               <div className=" flex-1 w-60">
-                
+
 //                 <select
 //                   className="p-2 bg-slate-100 border rounded w-fll"
 //                   {...register("category")}
@@ -478,7 +766,7 @@ export default UploadCart;
 //               </div>
 
 //               <div className=" flex-1 w-60">
-                
+
 //                 <select
 //                   className="p-2 bg-slate-100 border rounded w-fll"
 //                   {...register("adminEmail")}
@@ -500,9 +788,6 @@ export default UploadCart;
 
 //             </div> */}
 
-
-
-
 //             <label htmlFor="productImage">
 //               <div className="p-2 bg-slate-100 border rounded h-32 w-full flex justify-center items-center cursor-pointer">
 //                 <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
@@ -515,7 +800,6 @@ export default UploadCart;
 //                     {...register("image")}
 //                     type="file"
 //                     className="hidden"
-                  
 
 //                   />
 //                   {errors.image && <p>{errors.image.message}</p>}
@@ -523,7 +807,6 @@ export default UploadCart;
 //               </div>
 //             </label>
 
- 
 //             {/* <div>
 //               <div className="flex items-center gap-6 py-2 ">
 //                 {imagePreviews.map((preview, index) => (
@@ -545,10 +828,9 @@ export default UploadCart;
 //               </div>
 //             </div> */}
 
-
 //             <textarea
 //               {...register("description")}
-             
+
 //               placeholder="Enter product description"
 //               className="p-1 bg-slate-100 border rounded resize-none h-28"
 //             />
