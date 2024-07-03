@@ -34,7 +34,8 @@ const PurchaseDetails = () => {
       for (const review of reviews) {
         if (review.reviewText) { // Only send reviews with text
           await axios.post(
-            'http://localhost:3000/api/v1/user/add-review',
+            // 'http://localhost:3000/api/v1/user/add-review',
+              `${import.meta.env.VITE_API_URL}/user/add-review`,
             review,
             {
               headers: {

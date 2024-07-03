@@ -15,7 +15,8 @@ const DeleteProducts = () => {
    
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/v1/admin/delete-product/${id}`,
+        // `http://localhost:3000/api/v1/admin/delete-product/${id}`,
+        `${import.meta.env.VITE_API_URL}/admin/delete-product/${id}`,
          {
            withCredentials: true
           //  headers: {
